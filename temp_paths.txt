@@ -1,0 +1,10 @@
+C:\Users\hp\aftermath\node_modules\next\dist\compiled\@next\font\dist\local\get-fallback-metrics-from-font-file.d.ts
+C:\Users\hp\aftermath\node_modules\next\dist\compiled\@next\font\dist\local\get-fallback-metrics-from-font-file.js
+C:\Users\hp\aftermath\node_modules\next\dist\compiled\@next\font\dist\local\index.d.ts
+C:\Users\hp\aftermath\node_modules\next\dist\compiled\@next\font\dist\local\index.js
+C:\Users\hp\aftermath\node_modules\next\dist\compiled\@next\font\dist\local\loader.d.ts
+C:\Users\hp\aftermath\node_modules\next\dist\compiled\@next\font\dist\local\loader.js
+C:\Users\hp\aftermath\node_modules\next\dist\compiled\@next\font\dist\local\pick-font-file-for-fallback-generation.d.ts
+C:\Users\hp\aftermath\node_modules\next\dist\compiled\@next\font\dist\local\pick-font-file-for-fallback-generation.js
+C:\Users\hp\aftermath\node_modules\next\dist\compiled\@next\font\dist\local\validate-local-font-function-call.d.ts
+C:\Users\hp\aftermath\node_modules\next\dist\compiled\@next\font\dist\local\validate-local-font-function-call.js
