@@ -36,7 +36,7 @@ export default function Hero() {
   );
 
   return (
-    <section className="relative bg-[#2b4E66]">
+    <section className="relative bg-white">
       {/* HERO */}
 
       <div
@@ -92,9 +92,7 @@ export default function Hero() {
             />
           </video>
 
-          {/* OVERLAY */}
-
-          <div className="absolute inset-0 bg-black/15" />
+         
 
           {/* GRAIN */}
 
@@ -140,7 +138,7 @@ export default function Hero() {
               className="
                 max-w-[95%]
                 sm:max-w-[900px]
-                text-[#F5F1E8]
+                text-white
                 text-[30px]
                 xs:text-[38px]
                 sm:text-[72px]
@@ -167,8 +165,8 @@ export default function Hero() {
     y: titleY,
   }}
   className="
-    mt-5
-    sm:mt-7
+    mt-20
+  
     flex
     flex-col
     sm:flex-row
@@ -177,46 +175,44 @@ export default function Hero() {
     gap-2.5
     sm:gap-4
     w-full
-    max-w-[520px]
+    max-w-[390px]
     mx-auto
   "
 >
   <button
     className="
       h-[44px]
-      sm:h-[50px]
-      md:h-[54px]
+      
+      md:h-[44px]
 
-      w-[88%]
-      sm:w-auto
+      w-[44%]
+  
 
-      min-w-0
-      sm:min-w-[210px]
+    
 
       rounded-full
       border
       border-white/15
 
-      bg-black/20
-      backdrop-blur-xl
+      bg-white
+     
 
-      px-5
-      sm:px-7
+   
 
       text-[14px]
-      sm:text-[15px]
-      md:text-[16px]
+      
+      md:text-[14px]
 
       font-[500]
-      text-white
+      text-black
 
-      shadow-[0_10px_40px_rgba(0,0,0,0.25)]
+     
 
       transition-all
       duration-500
 
       hover:bg-[#2b4E66]
-      hover:border-white/30
+      hover:border-white
       hover:scale-[1.02]
 
       active:scale-[0.98]
@@ -229,36 +225,34 @@ export default function Hero() {
     Book a Court
   </button>
 
-  <button
+   <button
     className="
       h-[44px]
-      sm:h-[50px]
-      md:h-[54px]
+      
+      md:h-[44px]
 
-      w-[88%]
-      sm:w-auto
+    
+  
 
-      min-w-0
-      sm:min-w-[210px]
 
       rounded-full
       border
       border-white/15
 
-      bg-black/20
-      backdrop-blur-xl
+      bg-white
+     
 
       px-5
       sm:px-7
 
-      text-[14px]
-      sm:text-[15px]
-      md:text-[16px]
+      text-[12px]
+      
+      md:text-[14px]
 
       font-[500]
-      text-white
+      text-black
 
-      shadow-[0_10px_40px_rgba(0,0,0,0.25)]
+     
 
       transition-all
       duration-500
@@ -276,8 +270,10 @@ export default function Hero() {
   >
     Become a Member
   </button>
+
 </motion.div>
-            {/* SCROLL ICON */}
+
+            
 
            
           </div>
@@ -286,30 +282,7 @@ export default function Hero() {
 
       {/* THE LATEST */}
 
-      <section
-        className="
-          relative
-          bg-[#2b4E66]
-          py-8
-          md:py-10
-          overflow-hidden
-        "
-      >
-        {/* TITLE */}
-
-        <div
-          className="
-            flex
-            items-center
-            justify-center
-            px-6
-            pt-10
-            text-center
-          "
-        >
-          
-        </div>
-      </section>
+    
     </section>
   );
 }

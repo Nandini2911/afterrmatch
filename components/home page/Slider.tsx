@@ -5,31 +5,51 @@ import { motion } from "framer-motion";
 const sections = [
   {
     id: 1,
-    title: "Paddle",
+    title: "PICKLE BALL",
     text:
-      "Private Lessons offer one-on-one instruction with our professional coaches, tailored to your level and focused on refining technique, strategy, and overall performance on court.",
+     "The pickleball courts at Afterr Match are designed to create a fun, energetic, and community-driven sports experience. The space encourages both casual play and competitive matches while bringing people together through fitness and social interaction.",
     button: "Inquire Today",
     image:
-      "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2200&auto=format&fit=crop",
+      "/pickle.png",
   },
+  
   {
     id: 2,
-    title: "Cafe",
+    title: "PS5 LOUNGE",
     text:
-      "Private Lessons offer one-on-one instruction with our professional coaches, tailored to your level and focused on refining technique, strategy, and overall performance on court.",
+      "The PS5 lounge at Afterr Match is a premium gaming and entertainment zone designed for casual gamers and social groups. It creates an immersive space for multiplayer gaming, tournaments, and interactive experiences.",
     button: "Inquire Today",
     image:
-      "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2200&auto=format&fit=crop",
+      "/ps5.PNG",
   },
   {
     id: 3,
-    title: "PS5 Lounge",
+    title: "CAFE",
     text:
-      "Private Lessons offer one-on-one instruction with our professional coaches, tailored to your level and focused on refining technique, strategy, and overall performance on court.",
+      "The café at Afterr Match offers a modern and relaxed environment for guests to unwind, socialize, and recharge. With a mix of comfort food, beverages, and aesthetic interiors, it complements the active lifestyle experience of the venue.",
     button: "Inquire Today",
     image:
-      "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2200&auto=format&fit=crop",
+      "/cafe.png",
   },
+  {
+    id: 4,
+    title: "POOL TABLE",
+    text:
+      "The pool table area at Afterr Match adds a classic recreational touch to the venue, offering guests a stylish and relaxed space to unwind and engage in friendly competition.",
+    button: "Inquire Today",
+    image:
+      "/pin.jpeg",
+  },
+   {
+    id: 5,
+    title: "LOUNGE DECK",
+    text:
+      "The Afterr Match Lounge Deck is a premium outdoor lifestyle space crafted for relaxation, social connection, and elevated experiences. Inspired by luxury sports clubs and modern social lounges, it offers a sophisticated atmosphere where members can unwind, connect, and enjoy the club beyond the game.",
+    button: "Inquire Today",
+    image:
+      "/deck.jpg",
+  },
+
 ];
 
 export default function Slider() {
@@ -100,48 +120,25 @@ export default function Slider() {
                 }}
                 className="
                   text-[16px]
-                  sm:text-[20px]
-                  md:text-[24px]
+         
+                  md:text-[40px]
                  
-
+                  font-bold
                   uppercase
 
-                  tracking-[4px]
+           
 
                   text-[#2B4E66]
 
-                  mb-6
+                  mb-15
                 "
               >
-                RESERVE CUP RETURNS TO
+                AFTERRMATCH EXPERIENCE AWAITS
               </p>
 
               {/* TITLE */}
 
-              <h1
-                style={{
-                  fontFamily:
-                    '"Cormorant Garamond", serif',
-                }}
-                className="
-                  text-[46px]
-                 
-                  md:text-[50px]
-               
-
-                  leading-[0.9]
-
-                  tracking-[-4px]
-
-                  uppercase
-
-                  text-[#2B4E66]
-
-                  mb-10
-                "
-              >
-                PUENTE ROMANO MARBELLA
-              </h1>
+              
 
               {/* DESCRIPTION */}
 
@@ -149,16 +146,16 @@ export default function Slider() {
                 className="
                   space-y-7
 
-                  max-w-[950px]
+                  max-w-[1000px]
 
-                  mx-auto
+            
                 "
               >
                 <p
                   className="
                     text-[18px]
                 
-                    md:text-[22px]
+                    md:text-[20px]
                   
 
                     leading-[1.1]
@@ -166,27 +163,22 @@ export default function Slider() {
                     text-[#2B4E66]
                   "
                 >
-                  Presented by Sierra Blanca Estates, the
-                  2026 edition of Reserve Cup Marbella
-                  marks the next chapter in the evolution
-                  of the global Reserve Cup Series.
+                  AFTERRMATCH is where sport, entertainment, and lifestyle come together in one elevated social destination. Designed for a new generation of players and creators, the space blends high-energy experiences with premium hospitality and modern culture.
                 </p>
 
                 <p
                   className="
                     text-[18px]
-                    sm:text-[22px]
-                    md:text-[26px]
-                    lg:text-[30px]
+                    
+                    md:text-[20px]
+                 
 
-                    leading-[1.5]
+                    leading-[1.1]
 
-                    text-[#2B4E66]/85
+                    text-[#2B4E66]
                   "
                 >
-                  The event brings together the world's
-                  top padel players for elite competition
-                  and hospitality.
+                 From competitive matches to relaxed social moments, every corner is built to inspire connection, movement, and unforgettable memories. More than a club, AFTERRMATCH is a community driven by energy, style, and the love of the game.
                 </p>
               </div>
             </motion.div>
@@ -261,8 +253,8 @@ export default function Slider() {
                     relative
 
                     h-[50vh]
-                    sm:h-[60vh]
-                    md:h-screen
+                  
+                    md:h-[110vh]
 
                     p-4
                     sm:p-5
@@ -389,39 +381,7 @@ export default function Slider() {
                     </button>
                   </div>
 
-                  {/* BOTTOM IMAGE */}
-
-                  <div className="mt-10">
-                    <div
-                      className="
-                        relative
-
-                        overflow-hidden
-
-                        h-[120px]
-                        sm:h-[180px]
-                        md:h-[200px]
-
-                        w-full
-                      "
-                    >
-                      <img
-                        src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1800&auto=format&fit=crop"
-                        alt=""
-                        className="
-                          h-full
-                          w-full
-
-                          object-cover
-
-                          transition-transform
-                          duration-700
-
-                          hover:scale-110
-                        "
-                      />
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             </motion.div>

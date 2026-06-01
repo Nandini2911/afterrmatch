@@ -1,13 +1,17 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 
 export default function LifestyleHero() {
   const { scrollYProgress } = useScroll();
 
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
+    stiffness: 80,
+    damping: 25,
     restDelta: 0.001,
   });
 
@@ -17,30 +21,48 @@ export default function LifestyleHero() {
       className="
         relative
         min-h-screen
-        bg-[#2b4E66]
         overflow-hidden
 
         flex
         items-center
         justify-center
 
-        px-5
+        px-4
+        sm:px-6
         md:px-8
         lg:px-12
 
-        pt-[180px]
-        md:pt-[220px]
+        py-24
+        sm:py-28
+        md:py-32
       "
     >
-      {/* CONTENT */}
+      {/* BACKGROUND IMAGE */}
+      <div className="absolute inset-0">
+        <img
+          src="/our_story.png"
+          alt="Lifestyle Background"
+          className="
+            absolute
+            inset-0
+            h-[140%]
+            w-full
+            object-cover
+          "
+        />
 
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 " />
+      </div>
+
+      {/* CONTENT */}
       <div
         className="
           relative
           z-10
 
           w-full
-          max-w-[1000px]
+          max-w-[1100px]
 
           mx-auto
 
@@ -53,7 +75,6 @@ export default function LifestyleHero() {
         "
       >
         {/* HEADING */}
-
         <motion.h1
           initial={{
             opacity: 0,
@@ -64,30 +85,26 @@ export default function LifestyleHero() {
             y: 0,
           }}
           transition={{
-            duration: 0.9,
-            ease: "easeOut",
+            duration: 1,
+            ease: [0.22, 1, 0.36, 1],
           }}
           viewport={{ once: true }}
-          className="
+          className="mt-20
             uppercase
-
             text-white
-
-            text-center
-
             font-black
 
-            leading-[1.2]
+            leading-[1.05]
 
-            tracking-[-0.05em]
+            tracking-[-0.04em]
 
-            text-[22px]
-            sm:text-[30px]
+            text-[28px]
+           
             md:text-[40px]
+            lg:text-[50px]
           
 
-            max-w-[900px]
-
+            max-w-[1000px]
             mx-auto
           "
           style={{
@@ -96,108 +113,57 @@ export default function LifestyleHero() {
           }}
         >
           RESERVED FOR
-          
-          THE ATHLETE WHO
           <br />
+          THE ATHLETE WHO
+         
           MAKES SPORT A
-          
+          <br />
           LIFESTYLE
         </motion.h1>
 
-        {/* SUBTITLE */}
-
-        <motion.p
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.8,
-            delay: 0.15,
-          }}
-          viewport={{ once: true }}
+        {/* SCROLL LINE */}
+        <div
           className="
+            relative
+
             mt-10
+            sm:mt-12
             md:mt-14
 
-            text-white/95
+            w-full
 
-            text-center
+            h-[1px]
 
-            leading-[1.4]
+            bg-white/20
 
-            font-normal
-
-            text-[15px]
-            sm:text-[18px]
-            md:text-[20px]
-         
-
-            max-w-[900px]
-
-            mx-auto
+            overflow-hidden
           "
-          style={{
-            fontFamily:
-              'Helvetica Neue, Helvetica, Arial, sans-serif',
-          }}
         >
-          Reserve is pioneering a new sport across the United States
-          by creating players, fans and friends. This community,
-          built on and around the court, will showcase the world’s
-          newest, most exciting game: padel. Through padel clubs,
-          activations, pop-ups, and tournaments, Reserve will propel
-          to new heights by developing athletes throughout America.
-        </motion.p>
+          <motion.div
+            style={{ scaleX }}
+            className="
+              absolute
+              left-0
+              top-0
 
-        {/* SCROLL LINE */}
+              h-full
+              w-full
 
-        <div
-  className="
-    relative
+              origin-left
 
-    mt-10
+              bg-white
+            "
+          />
+        </div>
+      </div>
 
-    w-screen
-    max-w-full
-
-    h-[1px]
-
-    bg-white/20
-
-    overflow-hidden
-  "
->
-  <motion.div
-    style={{ scaleX }}
-    className="
-      absolute
-      left-0
-      top-0
-
-      h-full
-      w-full
-
-      origin-left
-
-      bg-white
-    "
-  />
-</div>
-</div>
-
-      {/* GLOW */}
-
+      {/* GLOW EFFECT */}
       <div
         className="
           absolute
           inset-0
 
-          bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03),transparent_60%)]
+          bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_65%)]
 
           pointer-events-none
         "

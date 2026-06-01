@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -36,17 +37,9 @@ export default function MeetTheProsSection() {
   });
 
   // TITLE ANIMATION
-  const titleOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.12],
-    [1, 0]
-  );
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
 
-  const titleScale = useTransform(
-    scrollYProgress,
-    [0, 0.12],
-    [1, 0.82]
-  );
+  const titleScale = useTransform(scrollYProgress, [0, 0.12], [1, 0.82]);
 
   // CARD ANIMATION
   const leftCardY = useTransform(
@@ -82,7 +75,7 @@ export default function MeetTheProsSection() {
             opacity: titleOpacity,
             scale: titleScale,
           }}
-          className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none"
+          className="absolute inset-0 z-10 flex items-center justify-center px-4 pointer-events-none"
         >
           <h1
             className="
@@ -92,22 +85,22 @@ export default function MeetTheProsSection() {
               tracking-[-0.012em]
               text-[#2B4E66]
 
-              text-[20vw]
-              sm:text-[16vw]
-              md:text-[12vw]
-              xl:text-[10vw]
+              text-[18vw]
+              sm:text-[15vw]
+              md:text-[10vw]
+              lg:text-[8vw]
             "
             style={{
               fontFamily:
                 '"Cormorant Garamond", ui-serif, Georgia, serif',
             }}
           >
-            Meet The Pros
+            Meet The Founders
           </h1>
         </motion.div>
 
         {/* TABLET + DESKTOP */}
-        <div className="hidden md:flex relative w-full h-full items-center justify-center">
+        <div className="hidden md:flex relative w-full h-full items-center justify-center px-6 lg:px-10 xl:px-16">
           {/* LEFT CARD */}
           <motion.div
             style={{ y: leftCardY }}
@@ -115,14 +108,15 @@ export default function MeetTheProsSection() {
               absolute
               left-[1%]
               lg:left-[3%]
-              xl:left-[4%]
+              xl:left-[5%]
               top-1/2
               -translate-y-1/2
               z-20
 
-              md:scale-[0.72]
-              lg:scale-90
-              xl:scale-100
+              md:scale-[0.68]
+              lg:scale-[0.82]
+              xl:scale-[0.92]
+              2xl:scale-100
 
               origin-center
             "
@@ -141,9 +135,10 @@ export default function MeetTheProsSection() {
               -translate-y-1/2
               z-30
 
-              md:scale-[0.8]
-              lg:scale-95
-              xl:scale-100
+              md:scale-[0.74]
+              lg:scale-[0.88]
+              xl:scale-[0.96]
+              2xl:scale-100
 
               origin-center
             "
@@ -158,14 +153,15 @@ export default function MeetTheProsSection() {
               absolute
               right-[1%]
               lg:right-[3%]
-              xl:right-[4%]
+              xl:right-[5%]
               top-1/2
               -translate-y-1/2
               z-20
 
-              md:scale-[0.72]
-              lg:scale-90
-              xl:scale-100
+              md:scale-[0.68]
+              lg:scale-[0.82]
+              xl:scale-[0.92]
+              2xl:scale-100
 
               origin-center
             "
@@ -175,7 +171,7 @@ export default function MeetTheProsSection() {
         </div>
 
         {/* MOBILE */}
-        <div className="flex md:hidden relative w-full h-full items-center justify-center">
+        <div className="flex md:hidden relative w-full h-full items-center justify-center px-4">
           {/* CARD 1 */}
           <motion.div
             style={{ y: leftCardY }}
@@ -186,6 +182,9 @@ export default function MeetTheProsSection() {
               -translate-x-1/2
               -translate-y-1/2
               z-20
+              w-full
+              flex
+              justify-center
             "
           >
             <ProCard {...pros[0]} mobile />
@@ -201,6 +200,9 @@ export default function MeetTheProsSection() {
               -translate-x-1/2
               -translate-y-1/2
               z-30
+              w-full
+              flex
+              justify-center
             "
           >
             <ProCard {...pros[1]} mobile />
@@ -216,6 +218,9 @@ export default function MeetTheProsSection() {
               -translate-x-1/2
               -translate-y-1/2
               z-40
+              w-full
+              flex
+              justify-center
             "
           >
             <ProCard {...pros[2]} mobile />
@@ -253,16 +258,18 @@ function ProCard({
         bg-[#f3f3f1]
         border
         border-black/5
-        rounded-[34px]
+        rounded-[26px]
+        sm:rounded-[30px]
+        xl:rounded-[34px]
         overflow-hidden
         shadow-[0_15px_60px_rgba(0,0,0,0.06)]
 
         ${
           mobile
-            ? "w-[88vw] max-w-[360px] p-5"
+            ? "w-[90vw] max-w-[360px] p-4 sm:p-5"
             : featured
-            ? "w-[300px] md:w-[320px] lg:w-[390px] xl:w-[430px] p-6"
-            : "w-[230px] md:w-[250px] lg:w-[300px] xl:w-[340px] p-5"
+            ? "w-[260px] md:w-[300px] lg:w-[360px] xl:w-[410px] 2xl:w-[430px] p-5 xl:p-6"
+            : "w-[220px] md:w-[240px] lg:w-[285px] xl:w-[320px] 2xl:w-[340px] p-4 xl:p-5"
         }
       `}
     >
@@ -275,10 +282,10 @@ function ProCard({
 
           ${
             mobile
-              ? "text-[20px] mb-5"
+              ? "text-[18px] sm:text-[20px] mb-4 sm:mb-5"
               : featured
-              ? "text-[12px] md:text-[15px] xl:text-[18px] mb-6"
-              : "text-[12px] md:text-[15px] xl:text-[18px] mb-5"
+              ? "text-[12px] md:text-[14px] xl:text-[18px] mb-5 xl:mb-6"
+              : "text-[11px] md:text-[14px] xl:text-[18px] mb-4 xl:mb-5"
           }
         `}
         style={{
@@ -293,9 +300,11 @@ function ProCard({
       <div
         className={`
           overflow-hidden
-          rounded-[28px]
+          rounded-[22px]
+          sm:rounded-[26px]
+          xl:rounded-[28px]
 
-          ${mobile ? "mb-5" : "mb-6"}
+          ${mobile ? "mb-5" : "mb-5 xl:mb-6"}
         `}
       >
         <motion.img
@@ -313,10 +322,10 @@ function ProCard({
 
             ${
               mobile
-                ? "h-[240px]"
+                ? "h-[220px] sm:h-[240px]"
                 : featured
-                ? "h-[220px] md:h-[240px] lg:h-[300px] xl:h-[360px]"
-                : "h-[170px] md:h-[190px] lg:h-[220px] xl:h-[270px]"
+                ? "h-[220px] md:h-[240px] lg:h-[290px] xl:h-[340px] 2xl:h-[360px]"
+                : "h-[170px] md:h-[185px] lg:h-[215px] xl:h-[250px] 2xl:h-[270px]"
             }
           `}
         />
@@ -331,10 +340,10 @@ function ProCard({
 
           ${
             mobile
-              ? "text-[28px] mb-4"
+              ? "text-[24px] sm:text-[28px] mb-3 sm:mb-4"
               : featured
-              ? "text-[12px] md:text-[15px] xl:text-[18px] mb-4"
-              : "text-[12px] md:text-[15px] xl:text-[18px] mb-3"
+              ? "text-[12px] md:text-[14px] xl:text-[18px] mb-3 xl:mb-4"
+              : "text-[11px] md:text-[14px] xl:text-[18px] mb-2 xl:mb-3"
           }
         `}
         style={{
@@ -354,10 +363,10 @@ function ProCard({
 
           ${
             mobile
-              ? "text-[15px]"
+              ? "text-[14px] sm:text-[15px]"
               : featured
-              ? "text-[15px] md:text-[16px] xl:text-[18px]"
-              : "text-[13px] md:text-[14px] xl:text-[16px]"
+              ? "text-[14px] md:text-[15px] xl:text-[18px]"
+              : "text-[12px] md:text-[13px] xl:text-[16px]"
           }
         `}
       >
@@ -366,3 +375,4 @@ function ProCard({
     </motion.div>
   );
 }
+
