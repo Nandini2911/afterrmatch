@@ -355,31 +355,26 @@ export default function Slider() {
                   >
                     {section.text}
                   </p>
-
-                  <div className="mt-8">
-                    <button
-                      className="
-                        h-[34px]
-
-                        px-5
-
-                        rounded-full
-
-                        border
-                        border-white
-
-                        text-[16px]
-
-                        transition-all
-                        duration-500
-
-                        hover:bg-white
-                        hover:text-black
-                      "
-                    >
-                      {section.button}
-                    </button>
-                  </div>
+<div className="mt-8">
+  <a href="/book">
+    <button
+      className="
+        h-[34px]
+        px-5
+        rounded-full
+        border
+        border-white
+        text-[16px]
+        transition-all
+        duration-500
+        hover:bg-white
+        hover:text-black
+      "
+    >
+      {section.button}
+    </button>
+  </a>
+</div>
 
                   
                 </div>

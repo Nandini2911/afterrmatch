@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -38,6 +39,51 @@ const socials = [
   },
 ];
 export default function Footer() {
+  const [email, setEmail] = useState("");
+const [loading, setLoading] = useState(false);
+const [success, setSuccess] = useState(false);
+const handleJoinCommunity = async () => {
+  if (!email) {
+    alert("Please enter your email");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const response = await fetch(
+      "/api/newsletter",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body: JSON.stringify({
+          email,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+  if (data.success) {
+  setSuccess(true);
+  setEmail("");
+
+  setTimeout(() => {
+    setSuccess(false);
+  }, 5000);
+} else {
+      alert("Failed to join community");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <footer className="relative overflow-hidden border-t border-[#dbe5eb] bg-white">
       {/* Glow */}
@@ -114,17 +160,59 @@ export default function Footer() {
                 events and member experiences.
               </p>
 
-              <div className="space-y-4">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full rounded-full border border-[#cfdbe3] bg-white px-6 py-4 outline-none focus:border-[#2B4E66] transition-all"
-                />
+             <div className="space-y-4">
+  <input
+    type="email"
+    placeholder="Enter your email"
+    value={email}
+    onChange={(e) =>
+      setEmail(e.target.value)
+    }
+    className="w-full rounded-full border border-[#cfdbe3] bg-white px-6 py-4 outline-none focus:border-[#2B4E66] transition-all"
+  />
 
-                <button className="w-full rounded-full bg-[#2B4E66] py-4 text-sm uppercase tracking-[0.25em] text-white transition-all duration-300 hover:bg-[#1f3c50]">
-                  Join Community
-                </button>
-              </div>
+  <button
+    onClick={handleJoinCommunity}
+    disabled={loading}
+    className="
+      w-full
+      rounded-full
+      bg-[#2B4E66]
+      py-4
+      text-sm
+      uppercase
+      tracking-[0.25em]
+      text-white
+      transition-all
+      duration-300
+      hover:bg-[#1f3c50]
+      disabled:opacity-50
+    "
+  >
+    {loading
+      ? "Joining..."
+      : "Join Community"}
+  </button>
+  {success && (
+  <div
+    className="
+      mt-3
+      rounded-2xl
+      border
+      border-green-200
+      bg-green-50
+      px-4
+      py-3
+      text-center
+      text-sm
+      text-green-700
+    "
+  >
+    ✓ Your request has been sent successfully.
+    Welcome to the After Match Community.
+  </div>
+)}
+</div>
             </div>
           </div>
         </div>

@@ -117,13 +117,7 @@ A new kind of everyday escape is arriving.
               viewport={{ once: false, amount: 0.3 }}
               className="mt-12 mb-20"
             >
-              <button className="group relative overflow-hidden border border-black px-8 py-4 uppercase tracking-[0.25em] text-[12px] font-semibold">
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-                  Learn More
-                </span>
-
-                <span className="absolute inset-0 bg-[#2b4E66] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              </button>
+             
             </motion.div>
           </div>
         </motion.div>

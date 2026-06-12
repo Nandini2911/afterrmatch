@@ -149,38 +149,7 @@ export default function MembershipExperience() {
                   A Modern Social Club.
                 </h3>
 
-                {/* BUTTON */}
-                <button
-                  className="
-                    mt-8
-                    inline-flex
-                    items-center
-                    gap-3
-
-                    rounded-full
-                    border
-                    border-white/15
-
-                    bg-white/10
-                    px-7
-                    py-3.5
-
-                    text-sm
-                    font-medium
-
-                    backdrop-blur-2xl
-
-                    transition-all
-                    duration-300
-
-                    hover:bg-white
-                    hover:text-black
-                    hover:scale-[1.03]
-                  "
-                >
-                  Explore Membership
-                  <span className="text-lg">→</span>
-                </button>
+               
               </div>
             </div>
 

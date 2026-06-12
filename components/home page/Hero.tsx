@@ -222,7 +222,9 @@ export default function Hero() {
         '"Cormorant Garamond", ui-serif, Georgia, serif',
     }}
   >
-    Book a Court
+    <a href="/book">
+  Book a Court
+</a>
   </button>
 
    <button
@@ -268,7 +270,7 @@ export default function Hero() {
         '"Cormorant Garamond", ui-serif, Georgia, serif',
     }}
   >
-    Become a Member
+    <a href="/membership">Become a Member</a>
   </button>
 
 </motion.div>

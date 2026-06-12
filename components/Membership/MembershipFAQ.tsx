@@ -137,11 +137,15 @@ export default function MembershipFAQ() {
                     '"Inter", sans-serif',
                 }}
               >
-                Apply Now
+              
+                  Apply Now
+                
               </span>
 
               <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#2B4E66]/10 bg-[#2B4E66] text-white shadow-[0_10px_40px_rgba(43,78,102,0.25)] transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:scale-105">
-                <ArrowUpRight size={20} />
+                <a href="/book" target="_blank" rel="noopener noreferrer">
+                  <ArrowUpRight size={20} />
+                </a>
               </div>
             </button>
           </div>
