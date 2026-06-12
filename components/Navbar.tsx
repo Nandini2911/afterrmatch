@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Our Story", href: "/our-story" },
@@ -143,24 +144,14 @@ export default function Navbar() {
               {/* LOGO */}
 
               <Link href="/">
-                <motion.h1
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="
-                    text-[34px]
-                    font-bold
-                    leading-none
-                    text-[#2B4E66]
-                    cursor-pointer
-                    select-none
-                  "
-                  style={{
-                    fontFamily:
-                      'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
-                  }}
-                >
-                  A
-                </motion.h1>
+               <Image
+    src="/logo.png"
+    alt="Afterr Match"
+    width={180}
+    height={70}
+    priority
+    className="h-auto w-[110px]"
+  />
               </Link>
 
               {/* MENU BUTTON */}
@@ -222,32 +213,22 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center justify-between w-full">
               {/* LOGO */}
 
-              <Link href="/">
-                <motion.h1
-                  whileHover={{
-                    scale: 1.04,
-                    rotate: -2,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                  }}
-                  className="
-                    text-[52px]
-                    leading-none
-                    font-bold
-                    text-[#2B4E66]
-                    cursor-pointer
-                    select-none
-                  "
-                  style={{
-                    fontFamily:
-                      'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
-                  }}
-                >
-                  A
-                </motion.h1>
-              </Link>
+             <Link href="/">
+  <motion.div
+    whileHover={{
+      scale: 1.03,
+    }}
+  >
+    <Image
+      src="/logo.png"
+      alt="Afterr Match"
+      width={160}
+      height={50}
+      priority
+      className="h-auto w-[160px] xl:w-[150px]"
+    />
+  </motion.div>
+</Link>
 
               {/* NAV LINKS */}
 
@@ -313,7 +294,7 @@ export default function Navbar() {
               {/* CTA BUTTON */}
 
               <motion.a
-                href="#membership"
+                href="/membership"
                 whileHover={{
                   scale: 1.03,
                   y: -2,
@@ -503,7 +484,7 @@ export default function Navbar() {
                 {/* CTA */}
 
                 <motion.a
-                  href="#membership"
+                  href="/membership"
                   onClick={() => setMobileMenu(false)}
                   whileTap={{ scale: 0.98 }}
                   className="
@@ -524,7 +505,8 @@ export default function Navbar() {
                       'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
                   }}
                 >
-                  Become a Member
+                    Become a Member
+                
                 </motion.a>
               </div>
             </motion.div>

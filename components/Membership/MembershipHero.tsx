@@ -158,47 +158,6 @@ export default function MembershipHero() {
               sm:flex-row
             "
           >
-            {/* PRIMARY BUTTON */}
-            <button
-              className="
-                group
-                relative
-                overflow-hidden
-                rounded-full
-                border
-                border-white/40
-                bg-gradient-to-b
-                from-white
-                to-[#f3f3f3]
-
-                px-6
-                py-3
-
-                text-[11px]
-                font-semibold
-                uppercase
-                tracking-[0.2em]
-                text-[#1F3F59]
-
-                shadow-[0_8px_30px_rgba(255,255,255,0.18)]
-                transition-all
-                duration-500
-
-                hover:scale-[1.04]
-              
-
-                sm:px-7
-                sm:py-3.5
-                sm:text-xs
-              "
-            >
-              
-              <span className="relative z-10 flex items-center gap-3">
-                Become A Member
-
-               
-              </span>
-            </button>
           </motion.div>
         </div>
       </div>

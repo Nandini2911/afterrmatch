@@ -354,7 +354,9 @@ export default function GalleryAndCTASection() {
               "
             >
               <span className="relative z-5">
-                Become a Member
+                <a href="/membership" target="_blank" rel="noopener noreferrer">
+                  Become a Member
+                </a>
               </span>
 
               <div
@@ -392,7 +394,9 @@ export default function GalleryAndCTASection() {
                 hover:bg-white
               "
             >
-              Book a Court
+              <a href="/book" target="_blank" rel="noopener noreferrer">
+                Book a Court
+              </a>
             </button>
           </motion.div>
         </motion.div>

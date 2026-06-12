@@ -37,6 +37,7 @@ export default function ExperienceShowcase() {
                 fontFamily: '"Cormorant Garamond", serif',
               }}
             >
+
               More Than A Match
             </h2>
 
@@ -249,23 +250,7 @@ export default function ExperienceShowcase() {
 
       </div>
        <div className="relative z-15 flex justify-center py-24 bg-white">
-  <button
-    className="
-      rounded-full
-      bg-gradient-to-r from-[#4f738b] via-[#2B4E66]
-      px-5
-      py-2
-      text-lg
-      font-medium
-      text-white
-      transition-all
-      duration-500
-      hover:scale-105
-      hover:shadow-[0_20px_50px_rgba(43,78,102,0.25)]
-    "
-  >
-    Book Now
-  </button>
+
 </div>
     </section>
     

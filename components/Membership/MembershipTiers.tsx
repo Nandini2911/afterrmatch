@@ -5,42 +5,51 @@ import { Check } from "lucide-react";
 
 const plans = [
   {
-    name: "Social",
-    subtitle: "Casual lifestyle access",
-    price: "$99",
-    access: "Lifestyle Access",
+    name: "Casual",
+    subtitle: "Flexible pay-per-use access",
+    access: "Casual Membership",
+     whatsapp:
+    "https://wa.me/919311821282?text=Hi%20Afterrmatch,%20I%20am%20interested%20in%20the%20Casual%20Membership.%20Please%20share%20more%20details.",
     features: [
-      "Clubhouse Access",
-      "Social Events",
-      "Guest Passes",
+      "Access to court bookings",
+      "Access to gaming and social zones",
+      "Participation in community events",
+      "Pay-per-use model",
     ],
-    button: "Join Now",
+    button: "Join Casual",
     featured: false,
   },
   {
-    name: "Club",
-    subtitle: "Regular players",
-    price: "$199",
-    access: "Premium Access",
+    name: "Regular",
+    subtitle: "For active community members",
+
+    access: "Regular Membership",
+    whatsapp:
+    "https://wa.me/919311821282?text=Hi%20Afterrmatch,%20I%20am%20interested%20in%20the%20Regular%20Membership.%20Please%20share%20more%20details.",
     features: [
-      "Priority Booking",
-      "Members Events",
-      "Wellness Access",
+      "Priority court bookings",
+      "Discounted court rates",
+      "Access to member-only events",
+      "Special partner offers and benefits",
     ],
     button: "Get Membership",
     featured: true,
   },
   {
-    name: "Elite",
-    subtitle: "Full premium experience",
-    price: "$349",
-    access: "Elite All Access",
+    name: "Premium",
+    subtitle: "The ultimate After Match experience",
+
+    access: "Premium Membership",
+     whatsapp:
+    "https://wa.me/919311821282?text=Hi%20Afterrmatch,%20I%20am%20interested%20in%20the%20Premium%20Membership.%20Please%20share%20more%20details.",
     features: [
-      "Unlimited Access",
-      "VIP Experiences",
-      "Private Events",
+      "Highest booking priority",
+      "Exclusive member events",
+      "Premium discounts across facilities",
+      "VIP access to tournaments and experiences",
+      "Special rewards and partner privileges",
     ],
-    button: "Go Elite",
+    button: "Go Premium",
     featured: false,
   },
 ];
@@ -67,12 +76,18 @@ export default function MembershipTiers() {
             MEMBERSHIP TIERS
           </span>
 
-          <h2 className="text-3xl font-semibold tracking-tight text-[#2B4E66] md:text-4xl">
-            Choose Your Experience
-          </h2>
+         <h2
+  className="text-3xl font-semibold tracking-tight text-[#2B4E66] md:text-4xl"
+  style={{
+    fontFamily:
+      '"Cormorant Garamond", serif',
+  }}
+>
+  Membership Plans
+</h2>
 
           <p className="mt-4 text-sm leading-relaxed text-[#2B4E66]/70 md:text-base">
-            Premium access crafted for players and lifestyle seekers.
+            Choose the membership that best fits your lifestyle and enjoy exclusive access, priority bookings, events, and premium community experiences.
           </p>
         </motion.div>
 
@@ -119,22 +134,7 @@ export default function MembershipTiers() {
                   </p>
                 </div>
 
-                {/* PRICE */}
-                <div className="mt-7 flex items-end gap-1">
-                  <span className="text-4xl font-semibold tracking-tight">
-                    {plan.price}
-                  </span>
-
-                  <span
-                    className={`mb-1 text-xs ${
-                      plan.featured
-                        ? "text-white/60"
-                        : "text-[#2B4E66]/60"
-                    }`}
-                  >
-                    /month
-                  </span>
-                </div>
+             
 
                 {/* ACCESS */}
                 <div
@@ -195,16 +195,22 @@ export default function MembershipTiers() {
 
                 {/* BUTTON */}
                 <div className="mt-8">
-                  <button
-                    className={`w-full rounded-full px-5 py-3 text-sm font-medium transition-all duration-300 ${
-                      plan.featured
-                        ? "bg-white text-[#2B4E66] hover:scale-[1.02]"
-                        : "bg-[#2B4E66] text-white hover:scale-[1.02] hover:bg-[#1F3F55]"
-                    }`}
-                  >
-                    {plan.button}
-                  </button>
-                </div>
+  <a
+    href={plan.whatsapp}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <button
+      className={`w-full rounded-full px-5 py-3 text-sm font-medium transition-all duration-300 ${
+        plan.featured
+          ? "bg-white text-[#2B4E66] hover:scale-[1.02]"
+          : "bg-[#2B4E66] text-white hover:scale-[1.02] hover:bg-[#1F3F55]"
+      }`}
+    >
+      {plan.button}
+    </button>
+  </a>
+</div>
               </div>
             </motion.div>
           ))}

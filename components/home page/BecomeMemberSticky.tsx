@@ -76,30 +76,35 @@ export default function BecomeMemberSection() {
         {/* ================= IMAGE ================= */}
 
         <motion.div
-          style={{
-            scale: imageScale,
-            opacity: imageOpacity,
-          }}
-          className="absolute inset-0"
-        >
-          <Image
-            src="/hero_last2.jpg"
-            alt="Club"
-            fill
-            priority
-            className="object-cover"
-          />
+  style={{
+    scale: imageScale,
+    opacity: imageOpacity,
+  }}
+  className="absolute inset-0"
+>
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+    className="h-full w-full object-cover"
+  >
+    <source
+      src="/footervideo.MP4"
+      type="video/mp4"
+    />
+  </video>
 
-          {/* OVERLAY */}
-
-          <div
-            className="
-              absolute
-              inset-0
-              bg-black/40
-            "
-          />
-        </motion.div>
+  {/* OVERLAY */}
+  <div
+    className="
+      absolute
+      inset-0
+   
+    "
+  />
+</motion.div>
 
         {/* ================= HUGE TEXT ================= */}
 
@@ -263,7 +268,7 @@ export default function BecomeMemberSection() {
                     '"Cormorant Garamond", ui-serif, Georgia, serif',
                 }}
               >
-                Become a Member
+                <a href="/membership">Become a Member</a>
               </button>
             </div>
           </div>

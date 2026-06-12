@@ -6,28 +6,29 @@ import { useRef } from "react";
 
 const pros = [
   {
-    name: "JUAN MARTÍN DÍAZ",
-    role: "CHIEF PADEL OFFICER",
+    name: "RUHAN KAPOOR",
+    role: "FOUNDER & CEO",
     image:
       "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1200&auto=format&fit=crop",
-    desc: "A padel legend from Argentina who dominated the sport for nearly two decades, holding the World Number 1 ranking for 13 consecutive years.",
+   desc: "Ruhan Kapoor is the founder of Afterrmatch, a next-generation social sports and lifestyle destination built to bring people together through sports, gaming, food, and community experiences."
   },
+
   {
-    name: "ALEJANDRO GALÁN",
-    role: "GLOBAL PERFORMANCE LEAD",
+    name: "RATIK KAPOOR",
+    role: "CO-FOUNDER",
     image:
       "https://images.unsplash.com/photo-1541625602330-2277a4c46182?q=80&w=1200&auto=format&fit=crop",
-    desc: "Known for explosive energy and elite athleticism, Galán represents the new generation of world-class padel excellence.",
+    desc: "Ratik Kapoor is the co-founder of Afterrmatch and a fitness enthusiast focused on making wellness enjoyable, accessible, and community-driven through meaningful social experiences."
   },
+
   {
-    name: "ARTURO COELLO",
-    role: "ELITE AMBASSADOR",
+    name: "JITESH KAPOOR",
+    role: "FOUNDER & CEO",
     image:
       "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?q=80&w=1200&auto=format&fit=crop",
-    desc: "One of the most exciting young talents in the sport, bringing power, precision, and charisma to the global padel stage.",
+    desc: "Jitesh Kapoor is an entrepreneur, Afro/Tech House DJ, and music producer dedicated to creating unique spaces where sports, culture, entertainment, and community come together."
   },
 ];
-
 export default function MeetTheProsSection() {
   const sectionRef = useRef(null);
 
@@ -95,7 +96,7 @@ export default function MeetTheProsSection() {
                 '"Cormorant Garamond", ui-serif, Georgia, serif',
             }}
           >
-            Meet The Founders
+          Meet The Founders
           </h1>
         </motion.div>
 
@@ -228,6 +229,7 @@ export default function MeetTheProsSection() {
         </div>
       </div>
     </section>
+
   );
 }
 

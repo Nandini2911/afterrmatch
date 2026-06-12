@@ -136,7 +136,7 @@ export default function LuxuryVideoSection() {
               }}
             >
               <source
-                src="https://video.wixstatic.com/video/2d8d9d_bf4f3ca8525f4aa4935b2d7f6659fe63/1080p/mp4/file.mp4"
+                src="/footervideo.MP4"
                 type="video/mp4"
               />
             </video>
@@ -228,7 +228,9 @@ export default function LuxuryVideoSection() {
               "
             >
               <span className="relative z-10 transition-colors duration-300 group-hover:text-black">
-                Become a Member
+                <a href="/membership" target="_blank" rel="noopener noreferrer">
+                  Become a Member
+                </a>
               </span>
 
               <span className="absolute inset-0 translate-y-full bg-white transition-transform duration-500 group-hover:translate-y-0" />
