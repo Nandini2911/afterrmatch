@@ -87,7 +87,7 @@ export default function Hero() {
             "
           >
             <source
-              src="https://video.wixstatic.com/video/2d8d9d_bf4f3ca8525f4aa4935b2d7f6659fe63/1080p/mp4/file.mp4"
+              src="intro.mp4"
               type="video/mp4"
             />
           </video>
@@ -127,35 +127,7 @@ export default function Hero() {
           >
             {/* TITLE */}
 
-            <motion.h1
-              style={{
-                scale: titleScale,
-                opacity: titleOpacity,
-                y: titleY,
-                fontFamily:
-                  '"Cormorant Garamond", ui-serif, Georgia, serif',
-              }}
-              className="
-                max-w-[95%]
-                sm:max-w-[900px]
-                text-white
-                text-[30px]
-                xs:text-[38px]
-                sm:text-[72px]
-                md:text-[96px]
-                lg:text-[118px]
-                leading-[1.1]
-                sm:leading-[1.1]
-                tracking-[-3px]
-                sm:tracking-[-4px]
-                md:tracking-[-7px]
-                font-[500]
-                drop-shadow-2xl
-                break-words
-              "
-            >
-              AFTERRMATCH
-            </motion.h1>
+          
 
            {/* BUTTONS */}
 

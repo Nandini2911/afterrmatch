@@ -40,7 +40,7 @@ export default function Home() {
 
   return (
     <>
-      <SplashScreen isVisible={showSplash} />
+      <SplashScreen />
 
       <main
         className={`

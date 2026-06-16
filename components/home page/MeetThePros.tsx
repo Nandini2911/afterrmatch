@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -8,27 +7,23 @@ const pros = [
   {
     name: "RUHAN KAPOOR",
     role: "FOUNDER & CEO",
-    image:
-      "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1200&auto=format&fit=crop",
-   desc: "Ruhan Kapoor is the founder of Afterrmatch, a next-generation social sports and lifestyle destination built to bring people together through sports, gaming, food, and community experiences."
+    image: "ruhan.jpeg",
+    desc: "Ruhan Kapoor is the founder of Afterrmatch, a next-generation social sports and lifestyle destination built to bring people together through sports, gaming, food, and community experiences.",
   },
-
   {
     name: "RATIK KAPOOR",
     role: "CO-FOUNDER",
-    image:
-      "https://images.unsplash.com/photo-1541625602330-2277a4c46182?q=80&w=1200&auto=format&fit=crop",
-    desc: "Ratik Kapoor is the co-founder of Afterrmatch and a fitness enthusiast focused on making wellness enjoyable, accessible, and community-driven through meaningful social experiences."
+    image: "ratik.jpeg",
+    desc: "Ratik Kapoor is the co-founder of Afterrmatch and a fitness enthusiast focused on making wellness enjoyable, accessible, and community-driven through meaningful social experiences.",
   },
-
   {
     name: "JITESH KAPOOR",
     role: "FOUNDER & CEO",
-    image:
-      "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?q=80&w=1200&auto=format&fit=crop",
-    desc: "Jitesh Kapoor is an entrepreneur, Afro/Tech House DJ, and music producer dedicated to creating unique spaces where sports, culture, entertainment, and community come together."
+    image: "jitesh.jpeg",
+    desc: "Jitesh Kapoor is an entrepreneur, Afro/Tech House DJ, and music producer dedicated to creating unique spaces where sports, culture, entertainment, and community come together.",
   },
 ];
+
 export default function MeetTheProsSection() {
   const sectionRef = useRef(null);
 
@@ -37,12 +32,9 @@ export default function MeetTheProsSection() {
     offset: ["start start", "end end"],
   });
 
-  // TITLE ANIMATION
   const titleOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
-
   const titleScale = useTransform(scrollYProgress, [0, 0.12], [1, 0.82]);
 
-  // CARD ANIMATION
   const leftCardY = useTransform(
     scrollYProgress,
     [0.12, 0.28],
@@ -76,7 +68,7 @@ export default function MeetTheProsSection() {
             opacity: titleOpacity,
             scale: titleScale,
           }}
-          className="absolute inset-0 z-10 flex items-center justify-center px-4 pointer-events-none"
+          className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4"
         >
           <h1
             className="
@@ -85,66 +77,60 @@ export default function MeetTheProsSection() {
               leading-none
               tracking-[-0.012em]
               text-[#2B4E66]
-
               text-[18vw]
               sm:text-[15vw]
               md:text-[10vw]
               lg:text-[8vw]
             "
             style={{
-              fontFamily:
-                '"Cormorant Garamond", ui-serif, Georgia, serif',
+              fontFamily: '"Cormorant Garamond", ui-serif, Georgia, serif',
             }}
           >
-          Meet The Founders
+            Meet The Founders
           </h1>
         </motion.div>
 
         {/* TABLET + DESKTOP */}
-        <div className="hidden md:flex relative w-full h-full items-center justify-center px-6 lg:px-10 xl:px-16">
+        <div className="relative hidden h-full w-full items-center justify-center px-6 md:flex lg:px-10 xl:px-16">
           {/* LEFT CARD */}
           <motion.div
             style={{ y: leftCardY }}
             className="
               absolute
               left-[1%]
-              lg:left-[3%]
-              xl:left-[5%]
               top-1/2
-              -translate-y-1/2
               z-20
-
+              -translate-y-1/2
+              origin-center
               md:scale-[0.68]
+              lg:left-[3%]
               lg:scale-[0.82]
+              xl:left-[5%]
               xl:scale-[0.92]
               2xl:scale-100
-
-              origin-center
             "
           >
             <ProCard {...pros[0]} />
           </motion.div>
 
-          {/* CENTER CARD */}
+          {/* CENTER CARD - SAME SIZE AS LEFT & RIGHT */}
           <motion.div
             style={{ y: centerCardY }}
             className="
               absolute
               left-1/2
               top-1/2
+              z-30
               -translate-x-1/2
               -translate-y-1/2
-              z-30
-
-              md:scale-[0.74]
-              lg:scale-[0.88]
-              xl:scale-[0.96]
-              2xl:scale-100
-
               origin-center
+              md:scale-[0.68]
+              lg:scale-[0.82]
+              xl:scale-[0.92]
+              2xl:scale-100
             "
           >
-            <ProCard {...pros[1]} featured />
+            <ProCard {...pros[1]} />
           </motion.div>
 
           {/* RIGHT CARD */}
@@ -153,18 +139,16 @@ export default function MeetTheProsSection() {
             className="
               absolute
               right-[1%]
-              lg:right-[3%]
-              xl:right-[5%]
               top-1/2
-              -translate-y-1/2
               z-20
-
+              -translate-y-1/2
+              origin-center
               md:scale-[0.68]
+              lg:right-[3%]
               lg:scale-[0.82]
+              xl:right-[5%]
               xl:scale-[0.92]
               2xl:scale-100
-
-              origin-center
             "
           >
             <ProCard {...pros[2]} />
@@ -172,55 +156,52 @@ export default function MeetTheProsSection() {
         </div>
 
         {/* MOBILE */}
-        <div className="flex md:hidden relative w-full h-full items-center justify-center px-4">
-          {/* CARD 1 */}
+        <div className="relative flex h-full w-full items-center justify-center px-4 md:hidden">
           <motion.div
             style={{ y: leftCardY }}
             className="
               absolute
-              top-1/2
               left-1/2
+              top-1/2
+              z-20
+              flex
+              w-full
               -translate-x-1/2
               -translate-y-1/2
-              z-20
-              w-full
-              flex
               justify-center
             "
           >
             <ProCard {...pros[0]} mobile />
           </motion.div>
 
-          {/* CARD 2 */}
           <motion.div
             style={{ y: centerCardY }}
             className="
               absolute
-              top-1/2
               left-1/2
+              top-1/2
+              z-30
+              flex
+              w-full
               -translate-x-1/2
               -translate-y-1/2
-              z-30
-              w-full
-              flex
               justify-center
             "
           >
             <ProCard {...pros[1]} mobile />
           </motion.div>
 
-          {/* CARD 3 */}
           <motion.div
             style={{ y: rightCardY }}
             className="
               absolute
-              top-1/2
               left-1/2
+              top-1/2
+              z-40
+              flex
+              w-full
               -translate-x-1/2
               -translate-y-1/2
-              z-40
-              w-full
-              flex
               justify-center
             "
           >
@@ -229,7 +210,6 @@ export default function MeetTheProsSection() {
         </div>
       </div>
     </section>
-
   );
 }
 
@@ -239,14 +219,12 @@ function ProCard({
   image,
   desc,
   mobile = false,
-  featured = false,
 }: {
   name: string;
   role: string;
   image: string;
   desc: string;
   mobile?: boolean;
-  featured?: boolean;
 }) {
   return (
     <motion.div
@@ -257,21 +235,19 @@ function ProCard({
         duration: 0.4,
       }}
       className={`
-        bg-[#f3f3f1]
+        overflow-hidden
+        rounded-[26px]
         border
         border-black/5
-        rounded-[26px]
+        bg-[#f3f3f1]
+        shadow-[0_15px_60px_rgba(0,0,0,0.06)]
         sm:rounded-[30px]
         xl:rounded-[34px]
-        overflow-hidden
-        shadow-[0_15px_60px_rgba(0,0,0,0.06)]
 
         ${
           mobile
             ? "w-[90vw] max-w-[360px] p-4 sm:p-5"
-            : featured
-            ? "w-[260px] md:w-[300px] lg:w-[360px] xl:w-[410px] 2xl:w-[430px] p-5 xl:p-6"
-            : "w-[220px] md:w-[240px] lg:w-[285px] xl:w-[320px] 2xl:w-[340px] p-4 xl:p-5"
+            : "w-[220px] p-4 md:w-[240px] lg:w-[285px] xl:w-[320px] xl:p-5 2xl:w-[340px]"
         }
       `}
     >
@@ -284,15 +260,12 @@ function ProCard({
 
           ${
             mobile
-              ? "text-[18px] sm:text-[20px] mb-4 sm:mb-5"
-              : featured
-              ? "text-[12px] md:text-[14px] xl:text-[18px] mb-5 xl:mb-6"
-              : "text-[11px] md:text-[14px] xl:text-[18px] mb-4 xl:mb-5"
+              ? "mb-4 text-[18px] sm:mb-5 sm:text-[20px]"
+              : "mb-4 text-[11px] md:text-[14px] xl:mb-5 xl:text-[18px]"
           }
         `}
         style={{
-          fontFamily:
-            '"Cormorant Garamond", ui-serif, Georgia, serif',
+          fontFamily: '"Cormorant Garamond", ui-serif, Georgia, serif',
         }}
       >
         {name}
@@ -301,12 +274,16 @@ function ProCard({
       {/* IMAGE */}
       <div
         className={`
+          relative
+          mb-5
+          aspect-[4/5]
+          w-full
           overflow-hidden
           rounded-[22px]
+          bg-[#d9d9d4]
           sm:rounded-[26px]
+          xl:mb-6
           xl:rounded-[28px]
-
-          ${mobile ? "mb-5" : "mb-5 xl:mb-6"}
         `}
       >
         <motion.img
@@ -315,21 +292,19 @@ function ProCard({
           }}
           transition={{
             duration: 0.5,
+            ease: "easeOut",
           }}
           src={image}
           alt={name}
-          className={`
+          className="
+            absolute
+            inset-0
+            block
+            h-full
             w-full
             object-cover
-
-            ${
-              mobile
-                ? "h-[220px] sm:h-[240px]"
-                : featured
-                ? "h-[220px] md:h-[240px] lg:h-[290px] xl:h-[340px] 2xl:h-[360px]"
-                : "h-[170px] md:h-[185px] lg:h-[215px] xl:h-[250px] 2xl:h-[270px]"
-            }
-          `}
+            object-center
+          "
         />
       </div>
 
@@ -342,15 +317,12 @@ function ProCard({
 
           ${
             mobile
-              ? "text-[24px] sm:text-[28px] mb-3 sm:mb-4"
-              : featured
-              ? "text-[12px] md:text-[14px] xl:text-[18px] mb-3 xl:mb-4"
-              : "text-[11px] md:text-[14px] xl:text-[18px] mb-2 xl:mb-3"
+              ? "mb-3 text-[24px] sm:mb-4 sm:text-[28px]"
+              : "mb-2 text-[11px] md:text-[14px] xl:mb-3 xl:text-[18px]"
           }
         `}
         style={{
-          fontFamily:
-            '"Cormorant Garamond", ui-serif, Georgia, serif',
+          fontFamily: '"Cormorant Garamond", ui-serif, Georgia, serif',
         }}
       >
         {role}
@@ -359,15 +331,13 @@ function ProCard({
       {/* DESCRIPTION */}
       <p
         className={`
-          text-[#6b6b6b]
-          leading-[1.5]
           font-light
+          leading-[1.5]
+          text-[#6b6b6b]
 
           ${
             mobile
               ? "text-[14px] sm:text-[15px]"
-              : featured
-              ? "text-[14px] md:text-[15px] xl:text-[18px]"
               : "text-[12px] md:text-[13px] xl:text-[16px]"
           }
         `}
@@ -377,4 +347,3 @@ function ProCard({
     </motion.div>
   );
 }
-
