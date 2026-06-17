@@ -12,9 +12,9 @@ const pros = [
   },
   {
     name: "RATIK KAPOOR",
-    role: "CO-FOUNDER",
+    role: "FOUNDER & CEO",
     image: "ratik.jpeg",
-    desc: "Ratik Kapoor is the co-founder of Afterrmatch and a fitness enthusiast focused on making wellness enjoyable, accessible, and community-driven through meaningful social experiences.",
+    desc: "Ratik Kapoor is the Founder & CEO of Afterrmatch, a next-generation social sports and lifestyle destination built to make fitness enjoyable, accessible, and community-driven. A dedicated fitness enthusiast, he is redefining the way people stay active by bringing together world-class pickleball facilities, wellness activities, gaming, community events, and curated social experiences, creating a space where movement feels exciting and meaningful connections happen naturally.",
   },
   {
     name: "JITESH KAPOOR",
