@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 const navLinks = [
@@ -18,25 +18,13 @@ const socials = [
   {
     label: "Instagram",
     icon: FaInstagram,
-    href: "https://instagram.com",
-    external: true,
-  },
-  {
-    label: "LinkedIn",
-    icon: FaLinkedinIn,
-    href: "https://linkedin.com",
-    external: true,
-  },
-  {
-    label: "YouTube",
-    icon: FaYoutube,
-    href: "https://youtube.com",
+    href: "https://www.instagram.com/afterrmatch?igsh=MWx4NjBjYjQ3bjV5MA==",
     external: true,
   },
   {
     label: "Email",
     icon: MdEmail,
-    href: "mailto:hello@afterrmatch.com",
+    href: "mailto:info@afterrmatch.com",
     external: false,
   },
 ];
@@ -197,32 +185,56 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="flex flex-col items-center justify-between gap-8 pt-10 md:flex-row">
-          <p className="text-center text-sm tracking-wide text-[#7c93a3] md:text-left">
-            © 2026 AFTERRMATCH. All rights reserved.
-          </p>
+        {/* Premium Bottom Bar */}
+        <div className="pt-10">
+          <div className="relative overflow-hidden rounded-[2rem] border border-[#dbe5eb] bg-white/75 px-6 py-6 shadow-[0_24px_80px_rgba(43,78,102,0.08)] backdrop-blur-xl sm:px-8">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#2B4E66]/5 via-transparent to-[#2B4E66]/5" />
 
-          <div className="flex items-center gap-4">
-            {socials.map((social) => {
-              const Icon = social.icon;
+            <div className="relative flex flex-col items-center justify-between gap-6 md:flex-row">
+              <p className="text-center text-sm tracking-wide text-[#7c93a3] md:text-left">
+                © 2026{" "}
+                <span className="font-medium tracking-[0.15em] text-[#2B4E66]">
+                  AFTERRMATCH
+                </span>
+                . All rights reserved.
+              </p>
 
-              return (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target={social.external ? "_blank" : undefined}
-                  rel={social.external ? "noopener noreferrer" : undefined}
-                  aria-label={social.label}
-                  className="group flex h-12 w-12 items-center justify-center rounded-full border border-[#dbe5eb] bg-white text-[#2B4E66] no-underline transition-all duration-500 hover:-translate-y-1 hover:border-[#2B4E66] hover:bg-[#2B4E66]"
-                >
-                  <Icon
-                    size={18}
-                    className="transition-colors duration-500 group-hover:text-white"
-                  />
-                </a>
-              );
-            })}
+              <a
+  href="https://dtsworld.in"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group rounded-full border border-[#dbe5eb] bg-white px-5 py-3 no-underline shadow-[0_12px_40px_rgba(43,78,102,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-[#2B4E66]/40 hover:bg-[#f7fafc]"
+>
+  <p className="text-center text-[11px] uppercase tracking-[0.32em] text-[#7c93a3]">
+    Developed by{" "}
+    <span className="ml-1 font-semibold tracking-[0.28em] text-[#2B4E66] transition-all duration-500 group-hover:tracking-[0.32em]">
+      Double Trouble Studio
+    </span>
+  </p>
+</a>
+
+              <div className="flex items-center gap-4">
+                {socials.map((social) => {
+                  const Icon = social.icon;
+
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target={social.external ? "_blank" : undefined}
+                      rel={social.external ? "noopener noreferrer" : undefined}
+                      aria-label={social.label}
+                      className="group flex h-12 w-12 items-center justify-center rounded-full border border-[#dbe5eb] bg-white text-[#2B4E66] no-underline shadow-[0_10px_30px_rgba(43,78,102,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-[#2B4E66] hover:bg-[#2B4E66]"
+                    >
+                      <Icon
+                        size={18}
+                        className="transition-colors duration-500 group-hover:text-white"
+                      />
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </div>
