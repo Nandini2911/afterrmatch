@@ -471,16 +471,10 @@ export default function LaunchDayPage() {
 
                     <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#102837]/55 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
 
-                    <div className="pointer-events-none absolute left-5 top-5 z-[2] rounded-full border border-white/25 bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-white backdrop-blur-md">
-                      {media.type === "image" ? "Photo" : "Video"}
-                    </div>
+                    
 
                     <div className="pointer-events-none absolute bottom-5 left-5 z-[2] translate-y-6 opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                      <span className="rounded-full bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#2B4E66]">
-                        {media.type === "image"
-                          ? `Photo ${index + 1}`
-                          : `Video ${index + 1}`}
-                      </span>
+                      
                     </div>
                   </div>
                 </motion.div>
