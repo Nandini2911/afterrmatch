@@ -200,18 +200,19 @@ export default function Footer() {
               </p>
 
               <a
-  href="https://dtsworld.in"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="group rounded-full border border-[#dbe5eb] bg-white px-5 py-3 no-underline shadow-[0_12px_40px_rgba(43,78,102,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-[#2B4E66]/40 hover:bg-[#f7fafc]"
->
-  <p className="text-center text-[11px] uppercase tracking-[0.32em] text-[#7c93a3]">
-    Developed by{" "}
-    <span className="ml-1 font-semibold tracking-[0.28em] text-[#2B4E66] transition-all duration-500 group-hover:tracking-[0.32em]">
-      Double Trouble Studio
-    </span>
-  </p>
-</a>
+                href="https://dtsworld.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                suppressHydrationWarning
+                className="group rounded-full border border-[#dbe5eb] bg-white px-5 py-3 text-[#2B4E66] no-underline shadow-[0_12px_40px_rgba(43,78,102,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-[#2B4E66]/40 hover:bg-[#f7fafc]"
+              >
+                <span className="block text-center text-[11px] uppercase tracking-[0.32em] text-[#7c93a3]">
+                  Developed by{" "}
+                  <span className="ml-1 font-semibold tracking-[0.28em] text-[#2B4E66] transition-all duration-500 group-hover:tracking-[0.32em]">
+                    Double Trouble Studio
+                  </span>
+                </span>
+              </a>
 
               <div className="flex items-center gap-4">
                 {socials.map((social) => {
@@ -224,6 +225,7 @@ export default function Footer() {
                       target={social.external ? "_blank" : undefined}
                       rel={social.external ? "noopener noreferrer" : undefined}
                       aria-label={social.label}
+                      suppressHydrationWarning
                       className="group flex h-12 w-12 items-center justify-center rounded-full border border-[#dbe5eb] bg-white text-[#2B4E66] no-underline shadow-[0_10px_30px_rgba(43,78,102,0.08)] transition-all duration-500 hover:-translate-y-1 hover:border-[#2B4E66] hover:bg-[#2B4E66]"
                     >
                       <Icon

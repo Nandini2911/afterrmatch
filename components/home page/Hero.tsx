@@ -59,9 +59,9 @@ export default function Hero() {
           className="
             relative
             mx-auto
-            h-[100vh]
-            sm:h-[100vh]
-            md:h-[100vh]
+            h-[110vh]
+            sm:h-[110vh]
+            md:h-[110vh]
             max-w-[1850px]
             overflow-hidden
             rounded-[18px]
@@ -87,7 +87,7 @@ export default function Hero() {
             "
           >
             <source
-              src="intro.mp4"
+              src="hero.mp4"
               type="video/mp4"
             />
           </video>
@@ -125,131 +125,6 @@ export default function Hero() {
               text-center
             "
           >
-            {/* TITLE */}
-
-          
-
-           {/* BUTTONS */}
-
-<motion.div
-  style={{
-    opacity: titleOpacity,
-    y: titleY,
-  }}
-  className="
-    mt-20
-  
-    flex
-    flex-col
-    sm:flex-row
-    items-center
-    justify-center
-    gap-2.5
-    sm:gap-4
-    w-full
-    max-w-[390px]
-    mx-auto
-  "
->
-  <button
-    className="
-      h-[44px]
-      
-      md:h-[44px]
-
-      w-[44%]
-  
-
-    
-
-      rounded-full
-      border
-      border-white/15
-
-      bg-white
-     
-
-   
-
-      text-[14px]
-      
-      md:text-[14px]
-
-      font-[500]
-      text-black
-
-     
-
-      transition-all
-      duration-500
-
-      hover:bg-[#2b4E66]
-      hover:border-white
-      hover:scale-[1.02]
-
-      active:scale-[0.98]
-    "
-    style={{
-      fontFamily:
-        '"Cormorant Garamond", ui-serif, Georgia, serif',
-    }}
-  >
-    <a href="/book">
-  Book a Court
-</a>
-  </button>
-
-   <button
-    className="
-      h-[44px]
-      
-      md:h-[44px]
-
-    
-  
-
-
-      rounded-full
-      border
-      border-white/15
-
-      bg-white
-     
-
-      px-5
-      sm:px-7
-
-      text-[12px]
-      
-      md:text-[14px]
-
-      font-[500]
-      text-black
-
-     
-
-      transition-all
-      duration-500
-
-      hover:bg-[#2b4E66]
-      hover:border-white/30
-      hover:scale-[1.02]
-
-      active:scale-[0.98]
-    "
-    style={{
-      fontFamily:
-        '"Cormorant Garamond", ui-serif, Georgia, serif',
-    }}
-  >
-    <a href="/membership">Become a Member</a>
-  </button>
-
-</motion.div>
-
-            
-
-           
           </div>
         </motion.div>
       </div>
