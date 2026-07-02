@@ -9,7 +9,7 @@ const plans = [
     subtitle: "Flexible pay-per-use access",
     access: "Casual Membership",
      whatsapp:
-    "https://wa.me/919311821282?text=Hi%20Afterrmatch,%20I%20am%20interested%20in%20the%20Casual%20Membership.%20Please%20share%20more%20details.",
+    "https://wa.me/918376923453?text=Hi%20Afterrmatch,%20I%20am%20interested%20in%20the%20Casual%20Membership.%20Please%20share%20more%20details.",
     features: [
       "Access to court bookings",
       "Access to gaming and social zones",
@@ -25,7 +25,7 @@ const plans = [
 
     access: "Regular Membership",
     whatsapp:
-    "https://wa.me/919311821282?text=Hi%20Afterrmatch,%20I%20am%20interested%20in%20the%20Regular%20Membership.%20Please%20share%20more%20details.",
+    "https://wa.me/918376923453?text=Hi%20Afterrmatch,%20I%20am%20interested%20in%20the%20Regular%20Membership.%20Please%20share%20more%20details.",
     features: [
       "Priority court bookings",
       "Discounted court rates",
@@ -41,7 +41,7 @@ const plans = [
 
     access: "Premium Membership",
      whatsapp:
-    "https://wa.me/919311821282?text=Hi%20Afterrmatch,%20I%20am%20interested%20in%20the%20Premium%20Membership.%20Please%20share%20more%20details.",
+    "https://wa.me/918376923453?text=Hi%20Afterrmatch,%20I%20am%20interested%20in%20the%20Premium%20Membership.%20Please%20share%20more%20details.",
     features: [
       "Highest booking priority",
       "Exclusive member events",

@@ -157,7 +157,7 @@ export default function BookingHero() {
               <div className="mt-6 grid grid-cols-2 gap-3">
   {/* PS5 Lounge */}
   <a
-    href={`https://wa.me/919311821282?text=${encodeURIComponent(
+    href={`https://wa.me/918376923453?text=${encodeURIComponent(
       `🎮 NEW PS5 LOUNGE BOOKING REQUEST
 
 Hello After Match Team,
@@ -210,7 +210,7 @@ Please confirm availability and booking details.`
 
   {/* Pool Table */}
   <a
-    href={`https://wa.me/919311821282?text=${encodeURIComponent(
+    href={`https://wa.me/918376923453?text=${encodeURIComponent(
       `🎱 NEW POOL TABLE BOOKING REQUEST
 
 Hello After Match Team,
