@@ -19,10 +19,7 @@ const launchDayMedia: LaunchDayMedia[] = [
     src: "/launch4.JPG",
   
   },
-  {
-    type: "image",
-    src: "/launch4.JPG",
-  },
+ 
   {
     type: "image",
     src: "/launch/launch5.JPG",
@@ -71,7 +68,38 @@ const launchDayMedia: LaunchDayMedia[] = [
     type: "image",
     src: "/launch/launch16.JPG",
   },
-  
+  {
+    type: "image",
+    src: "/launch/launch17.JPG",
+  },
+  {
+    type: "image",
+    src: "/launch/launch18.JPG",
+  },
+  {
+    type: "image",
+    src: "/launch/launch19.JPG",
+  },
+  {
+    type: "image",
+    src: "/launch/launch20.JPG",
+  },
+  {
+    type: "image",
+    src: "/launch/launch21.JPG",
+  },
+  {
+    type: "image",
+    src: "/launch/launch22.JPG",
+  },
+  {
+    type: "image",
+    src: "/launch/launch23.JPG",
+  },
+  {
+    type: "image",
+    src: "/launch/launch24.JPG",
+  }
 ];
 
 const masonryHeights = [
