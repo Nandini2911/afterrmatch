@@ -225,7 +225,7 @@ export default function LaunchDayPage() {
             <div className="relative mx-auto h-[500px] max-w-[520px] overflow-hidden rounded-[42px] border border-white bg-white p-3 shadow-[0_30px_100px_rgba(43,78,102,0.22)] md:h-[560px]">
               <div className="relative h-full w-full overflow-hidden rounded-[32px]">
                 <img
-                  src="/launch4.jpg"
+                  src="/launch4.JPG"
                   alt="Launch Day"
                   className="absolute inset-0 h-full w-full object-cover object-center transition duration-700 hover:scale-105"
                 />
