@@ -16,60 +16,60 @@ type LaunchDayMedia = {
 const launchDayMedia: LaunchDayMedia[] = [
   {
     type: "image",
-    src: "/launch4.jpg",
+    src: "/launch4.JPG",
   
   },
   {
     type: "image",
-    src: "/launch4.jpg",
+    src: "/launch4.JPG",
   },
   {
     type: "image",
-    src: "/launch/launch5.jpg",
+    src: "/launch/launch5.JPG",
   },
   {
     type: "image",
-    src: "/launch/launch6.jpg",
+    src: "/launch/launch6.JPG",
   },
   {
     type: "image",
-    src: "/launch/launch7.jpg",
+    src: "/launch/launch7.JPG",
   },
   {
     type: "image",
-    src: "/launch/launch8.jpg",
+    src: "/launch/launch8.JPG",
   },  
   {
     type: "image",
-    src: "/launch/launch9.jpg", 
+    src: "/launch/launch9.JPG", 
   },
   {
     type: "image",
-    src: "/launch/launch10.jpg",
+    src: "/launch/launch10.JPG",
   },
   {
     type: "image",
-    src: "/launch/launch11.jpg",
+    src: "/launch/launch11.JPG",
   },
   {
     type: "image",
-    src: "/launch/launch12.jpg",
+    src: "/launch/launch12.JPG",
   },
   {
     type: "image",
-    src: "/launch/launch13.jpg",
+    src: "/launch/launch13.JPG",
   },
   {
     type: "image", 
-    src: "/launch/launch14.jpg",
+    src: "/launch/launch14.JPG",
   },
   {
     type: "image",
-    src: "/launch/launch15.jpg",
+    src: "/launch/launch15.JPG",
   },
   {
     type: "image",
-    src: "/launch/launch16.jpg",
+    src: "/launch/launch16.JPG",
   },
   
 ];
