@@ -1,44 +1,14 @@
 "use client";
 
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Hero() {
   const { scrollY } = useScroll();
 
-  // PREMIUM SMOOTH EFFECTS
-
-  const titleScale = useTransform(
-    scrollY,
-    [0, 500],
-    [1, 1.12]
-  );
-
-  const titleOpacity = useTransform(
-    scrollY,
-    [0, 400],
-    [1, 0]
-  );
-
-  const titleY = useTransform(
-    scrollY,
-    [0, 500],
-    [0, 60]
-  );
-
-  const videoScale = useTransform(
-    scrollY,
-    [0, 500],
-    [1, 1.04]
-  );
+  const videoScale = useTransform(scrollY, [0, 500], [1, 1.04]);
 
   return (
     <section className="relative bg-white">
-      {/* HERO */}
-
       <div
         className="
           relative
@@ -50,12 +20,8 @@ export default function Hero() {
           md:pt-[105px]
         "
       >
-        {/* VIDEO CONTAINER */}
-
         <motion.div
-          style={{
-            scale: videoScale,
-          }}
+          style={{ scale: videoScale }}
           className="
             relative
             mx-auto
@@ -71,13 +37,12 @@ export default function Hero() {
             border-white/10
           "
         >
-          {/* VIDEO */}
-
           <video
             autoPlay
             muted
             loop
             playsInline
+            preload="auto"
             className="
               absolute
               inset-0
@@ -86,15 +51,8 @@ export default function Hero() {
               object-cover
             "
           >
-            <source
-              src="hero.mp4"
-              type="video/mp4"
-            />
+            <source src="/hero.MP4" type="video/MP4" />
           </video>
-
-         
-
-          {/* GRAIN */}
 
           <div
             className="
@@ -109,8 +67,6 @@ export default function Hero() {
             }}
           />
 
-          {/* CONTENT */}
-
           <div
             className="
               relative
@@ -124,14 +80,9 @@ export default function Hero() {
               sm:px-6
               text-center
             "
-          >
-          </div>
+          />
         </motion.div>
       </div>
-
-      {/* THE LATEST */}
-
-    
     </section>
   );
 }
