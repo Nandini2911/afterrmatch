@@ -3,17 +3,16 @@
 import { useEffect, useRef } from "react";
 
 export default function Hero() {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
 
     if (!video) return;
 
-    /*
-     * Muted playback is required for autoplay
-     * on Safari, Chrome, iPhone and Android.
-     */
+    let soundEnabled = false;
+
+    // Required for reliable autoplay on mobile and desktop.
     video.muted = true;
     video.defaultMuted = true;
     video.volume = 1;
@@ -23,35 +22,33 @@ export default function Hero() {
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
 
-    const playVideo = async () => {
+    const startVideo = async () => {
       try {
+        video.muted = true;
+        video.defaultMuted = true;
+
         await video.play();
       } catch (error) {
         console.warn(
-          "Muted video autoplay was blocked:",
+          "Hero video autoplay was blocked:",
           String(error)
         );
       }
     };
 
-    /*
-     * Start when enough video data is available.
-     */
-    if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-      playVideo();
-    } else {
-      video.addEventListener("loadeddata", playVideo, {
-        once: true,
-      });
-    }
+    const removeSoundListeners = () => {
+      window.removeEventListener("pointerdown", enableSound);
+      window.removeEventListener("touchstart", enableSound);
+      window.removeEventListener("keydown", enableSound);
+    };
 
     /*
-     * No sound button.
-     *
-     * Sound will turn on when the visitor first taps,
-     * clicks, scrolls or presses a key anywhere.
+     * No sound button is shown.
+     * Audio starts after the visitor's first tap or click.
      */
     const enableSound = async () => {
+      if (soundEnabled) return;
+
       try {
         video.muted = false;
         video.defaultMuted = false;
@@ -60,12 +57,9 @@ export default function Hero() {
 
         await video.play();
 
-        removeInteractionListeners();
+        soundEnabled = true;
+        removeSoundListeners();
       } catch {
-        /*
-         * Keep the video running muted if the browser
-         * still blocks audio.
-         */
         video.muted = true;
         video.defaultMuted = true;
         video.setAttribute("muted", "");
@@ -74,12 +68,16 @@ export default function Hero() {
       }
     };
 
-    const removeInteractionListeners = () => {
-      window.removeEventListener("pointerdown", enableSound);
-      window.removeEventListener("touchstart", enableSound);
-      window.removeEventListener("keydown", enableSound);
-      window.removeEventListener("scroll", enableSound);
+    const resumeVideo = () => {
+      if (
+        document.visibilityState === "visible" &&
+        video.paused
+      ) {
+        video.play().catch(() => {});
+      }
     };
+
+    startVideo();
 
     window.addEventListener("pointerdown", enableSound, {
       passive: true,
@@ -91,37 +89,17 @@ export default function Hero() {
 
     window.addEventListener("keydown", enableSound);
 
-    window.addEventListener("scroll", enableSound, {
-      passive: true,
-      once: true,
-    });
-
-    /*
-     * Resume playback when visitor comes back
-     * to the browser tab.
-     */
-    const handleVisibilityChange = () => {
-      if (
-        document.visibilityState === "visible" &&
-        video.paused
-      ) {
-        video.play().catch(() => {});
-      }
-    };
-
     document.addEventListener(
       "visibilitychange",
-      handleVisibilityChange
+      resumeVideo
     );
 
     return () => {
-      video.removeEventListener("loadeddata", playVideo);
-
-      removeInteractionListeners();
+      removeSoundListeners();
 
       document.removeEventListener(
         "visibilitychange",
-        handleVisibilityChange
+        resumeVideo
       );
     };
   }, []);
@@ -157,57 +135,62 @@ export default function Hero() {
             md:rounded-[30px]
           "
         >
+          {/* Fallback image prevents a black section */}
+          <img
+            src="/hero_last.jpg"
+            alt=""
+            aria-hidden="true"
+            className="
+              absolute
+              inset-0
+              h-full
+              w-full
+              object-cover
+              object-center
+            "
+          />
+
           <video
             ref={videoRef}
+            src="/hero.mp4"
             autoPlay
             muted
             loop
             playsInline
             preload="auto"
+            poster="/hero_last.jpg"
             controls={false}
             disablePictureInPicture
             controlsList="nodownload nofullscreen noplaybackrate"
-            onLoadedMetadata={(event) => {
-              const video = event.currentTarget;
-
-              video.muted = true;
-              video.defaultMuted = true;
-              video.playsInline = true;
+            onLoadedData={(event) => {
+              event.currentTarget.play().catch(() => {});
             }}
             onCanPlay={(event) => {
-              const video = event.currentTarget;
-
-              video.play().catch(() => {
-                video.muted = true;
-                video.defaultMuted = true;
-                video.play().catch(() => {});
-              });
+              event.currentTarget.play().catch(() => {});
             }}
             onError={(event) => {
               const video = event.currentTarget;
 
               console.warn(
-                "Hero video failed:",
-                `code=${video.error?.code ?? 0}`,
-                `message=${video.error?.message ?? "Unknown error"}`,
-                `source=${video.currentSrc}`
+                [
+                  "Hero video failed",
+                  `code=${video.error?.code ?? 0}`,
+                  `message=${video.error?.message ?? "Unknown"}`,
+                  `source=${video.currentSrc}`,
+                ].join(" | ")
               );
             }}
             className="
               absolute
               inset-0
+              z-[1]
               block
               h-full
               w-full
               object-cover
               object-center
             "
-          >
-            <source
-              src="/hero.mp4?v=2"
-              type="video/mp4"
-            />
-          </video>
+          />
 
           <div
             className="
