@@ -1,83 +1,71 @@
 "use client";
 
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Volume2, VolumeX } from "lucide-react";
 
 export default function Hero() {
   const { scrollY } = useScroll();
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // PREMIUM SMOOTH EFFECTS
+  const [isMuted, setIsMuted] = useState(true);
 
-  const titleScale = useTransform(
-    scrollY,
-    [0, 500],
-    [1, 1.12]
-  );
+  const videoScale = useTransform(scrollY, [0, 500], [1, 1.04]);
 
-  const titleOpacity = useTransform(
-    scrollY,
-    [0, 400],
-    [1, 0]
-  );
+  const toggleSound = async () => {
+    const video = videoRef.current;
 
-  const titleY = useTransform(
-    scrollY,
-    [0, 500],
-    [0, 60]
-  );
+    if (!video) return;
 
-  const videoScale = useTransform(
-    scrollY,
-    [0, 500],
-    [1, 1.04]
-  );
+    const shouldMute = !video.muted;
+
+    video.muted = shouldMute;
+    setIsMuted(shouldMute);
+
+    if (!shouldMute) {
+      try {
+        await video.play();
+      } catch (error) {
+        console.error("Unable to play video with audio:", error);
+      }
+    }
+  };
 
   return (
     <section className="relative bg-white">
-      {/* HERO */}
-
       <div
         className="
           relative
           overflow-hidden
           px-3
-          sm:px-4
           pt-[88px]
+          sm:px-4
           sm:pt-[95px]
           md:pt-[105px]
         "
       >
-        {/* VIDEO CONTAINER */}
-
         <motion.div
-          style={{
-            scale: videoScale,
-          }}
+          style={{ scale: videoScale }}
           className="
             relative
             mx-auto
-            h-[100vh]
-            sm:h-[100vh]
-            md:h-[100vh]
+            h-[110vh]
             max-w-[1850px]
             overflow-hidden
             rounded-[18px]
-            sm:rounded-[24px]
-            md:rounded-[30px]
             border
             border-white/10
+            sm:rounded-[24px]
+            md:rounded-[30px]
           "
         >
-          {/* VIDEO */}
-
           <video
+            ref={videoRef}
             autoPlay
-            muted
+            muted={isMuted}
             loop
             playsInline
+            preload="auto"
             className="
               absolute
               inset-0
@@ -86,18 +74,14 @@ export default function Hero() {
               object-cover
             "
           >
-            <source
-              src="https://video.wixstatic.com/video/2d8d9d_bf4f3ca8525f4aa4935b2d7f6659fe63/1080p/mp4/file.mp4"
-              type="video/mp4"
-            />
+            <source src="/hero.MP4" type="video/mp4" />
+            Your browser does not support the video element.
           </video>
 
-         
-
-          {/* GRAIN */}
-
+          {/* Grain effect */}
           <div
             className="
+              pointer-events-none
               absolute
               inset-0
               opacity-[0.06]
@@ -109,8 +93,7 @@ export default function Hero() {
             }}
           />
 
-          {/* CONTENT */}
-
+          {/* Hero content */}
           <div
             className="
               relative
@@ -121,170 +104,54 @@ export default function Hero() {
               items-center
               justify-center
               px-4
-              sm:px-6
               text-center
+              sm:px-6
+            "
+          />
+
+          {/* Audio control */}
+          <button
+            type="button"
+            onClick={toggleSound}
+            aria-label={isMuted ? "Enable video sound" : "Mute video sound"}
+            className="
+              absolute
+              bottom-6
+              right-6
+              z-30
+              flex
+              h-12
+              w-12
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-white/30
+              bg-black/35
+              text-white
+              shadow-lg
+              backdrop-blur-md
+              transition
+              duration-300
+              hover:scale-105
+              hover:bg-black/55
+              focus:outline-none
+              focus:ring-2
+              focus:ring-white/70
+              sm:bottom-8
+              sm:right-8
+              sm:h-14
+              sm:w-14
             "
           >
-            {/* TITLE */}
-
-            <motion.h1
-              style={{
-                scale: titleScale,
-                opacity: titleOpacity,
-                y: titleY,
-                fontFamily:
-                  '"Cormorant Garamond", ui-serif, Georgia, serif',
-              }}
-              className="
-                max-w-[95%]
-                sm:max-w-[900px]
-                text-white
-                text-[30px]
-                xs:text-[38px]
-                sm:text-[72px]
-                md:text-[96px]
-                lg:text-[118px]
-                leading-[1.1]
-                sm:leading-[1.1]
-                tracking-[-3px]
-                sm:tracking-[-4px]
-                md:tracking-[-7px]
-                font-[500]
-                drop-shadow-2xl
-                break-words
-              "
-            >
-              AFTERRMATCH
-            </motion.h1>
-
-           {/* BUTTONS */}
-
-<motion.div
-  style={{
-    opacity: titleOpacity,
-    y: titleY,
-  }}
-  className="
-    mt-20
-  
-    flex
-    flex-col
-    sm:flex-row
-    items-center
-    justify-center
-    gap-2.5
-    sm:gap-4
-    w-full
-    max-w-[390px]
-    mx-auto
-  "
->
-  <button
-    className="
-      h-[44px]
-      
-      md:h-[44px]
-
-      w-[44%]
-  
-
-    
-
-      rounded-full
-      border
-      border-white/15
-
-      bg-white
-     
-
-   
-
-      text-[14px]
-      
-      md:text-[14px]
-
-      font-[500]
-      text-black
-
-     
-
-      transition-all
-      duration-500
-
-      hover:bg-[#2b4E66]
-      hover:border-white
-      hover:scale-[1.02]
-
-      active:scale-[0.98]
-    "
-    style={{
-      fontFamily:
-        '"Cormorant Garamond", ui-serif, Georgia, serif',
-    }}
-  >
-    <a href="/book">
-  Book a Court
-</a>
-  </button>
-
-   <button
-    className="
-      h-[44px]
-      
-      md:h-[44px]
-
-    
-  
-
-
-      rounded-full
-      border
-      border-white/15
-
-      bg-white
-     
-
-      px-5
-      sm:px-7
-
-      text-[12px]
-      
-      md:text-[14px]
-
-      font-[500]
-      text-black
-
-     
-
-      transition-all
-      duration-500
-
-      hover:bg-[#2b4E66]
-      hover:border-white/30
-      hover:scale-[1.02]
-
-      active:scale-[0.98]
-    "
-    style={{
-      fontFamily:
-        '"Cormorant Garamond", ui-serif, Georgia, serif',
-    }}
-  >
-    <a href="/membership">Become a Member</a>
-  </button>
-
-</motion.div>
-
-            
-
-           
-          </div>
+            {isMuted ? (
+              <VolumeX className="h-5 w-5 sm:h-6 sm:w-6" />
+            ) : (
+              <Volume2 className="h-5 w-5 sm:h-6 sm:w-6" />
+            )}
+          </button>
         </motion.div>
       </div>
-
-      {/* THE LATEST */}
-
-    
     </section>
   );
 }
