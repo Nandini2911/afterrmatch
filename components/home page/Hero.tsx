@@ -1,129 +1,111 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  const prefersReducedMotion = useReducedMotion();
-  const { scrollY } = useScroll();
-
-  const videoScale = useTransform(
-    scrollY,
-    [0, 500],
-    [1, prefersReducedMotion ? 1 : 1.04]
-  );
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
-
-    const updateDevice = () => {
-      setIsDesktop(mediaQuery.matches);
-    };
-
-    updateDevice();
-
-    mediaQuery.addEventListener("change", updateDevice);
-
-    return () => {
-      mediaQuery.removeEventListener("change", updateDevice);
-    };
-  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
 
     if (!video) return;
 
+    /*
+     * Muted playback is required for autoplay
+     * on Safari, Chrome, iPhone and Android.
+     */
+    video.muted = true;
+    video.defaultMuted = true;
     video.volume = 1;
+    video.playsInline = true;
 
-    const startVideo = async () => {
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+
+    const playVideo = async () => {
       try {
-        /*
-         * First try autoplaying with sound.
-         * This may work when the browser has already granted
-         * autoplay permission for the website.
-         */
-        video.muted = false;
-        video.defaultMuted = false;
-
         await video.play();
       } catch (error) {
-        /*
-         * Most mobile browsers will block sound autoplay.
-         * Keep the video visible by playing it muted.
-         */
-        try {
-          video.muted = true;
-          video.defaultMuted = true;
-
-          await video.play();
-        } catch (playError) {
-          console.error("Hero video could not autoplay:", playError);
-        }
+        console.warn(
+          "Muted video autoplay was blocked:",
+          String(error)
+        );
       }
     };
 
-    startVideo();
+    /*
+     * Start when enough video data is available.
+     */
+    if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      playVideo();
+    } else {
+      video.addEventListener("loadeddata", playVideo, {
+        once: true,
+      });
+    }
 
     /*
-     * Enable audio on the first interaction anywhere on the page.
-     * Nothing is displayed over the video.
+     * No sound button.
+     *
+     * Sound will turn on when the visitor first taps,
+     * clicks, scrolls or presses a key anywhere.
      */
-    const enableAudio = () => {
-      const currentVideo = videoRef.current;
+    const enableSound = async () => {
+      try {
+        video.muted = false;
+        video.defaultMuted = false;
+        video.volume = 1;
+        video.removeAttribute("muted");
 
-      if (!currentVideo) return;
+        await video.play();
 
-      currentVideo.muted = false;
-      currentVideo.defaultMuted = false;
-      currentVideo.volume = 1;
+        removeInteractionListeners();
+      } catch {
+        /*
+         * Keep the video running muted if the browser
+         * still blocks audio.
+         */
+        video.muted = true;
+        video.defaultMuted = true;
+        video.setAttribute("muted", "");
 
-      const playPromise = currentVideo.play();
-
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            removeInteractionListeners();
-          })
-          .catch((error) => {
-            console.error("Audio activation was blocked:", error);
-          });
+        video.play().catch(() => {});
       }
     };
 
     const removeInteractionListeners = () => {
-      document.removeEventListener("pointerdown", enableAudio);
-      document.removeEventListener("touchstart", enableAudio);
-      document.removeEventListener("click", enableAudio);
-      document.removeEventListener("keydown", enableAudio);
+      window.removeEventListener("pointerdown", enableSound);
+      window.removeEventListener("touchstart", enableSound);
+      window.removeEventListener("keydown", enableSound);
+      window.removeEventListener("scroll", enableSound);
     };
 
-    document.addEventListener("pointerdown", enableAudio);
-    document.addEventListener("touchstart", enableAudio, {
+    window.addEventListener("pointerdown", enableSound, {
       passive: true,
     });
-    document.addEventListener("click", enableAudio);
-    document.addEventListener("keydown", enableAudio);
 
+    window.addEventListener("touchstart", enableSound, {
+      passive: true,
+    });
+
+    window.addEventListener("keydown", enableSound);
+
+    window.addEventListener("scroll", enableSound, {
+      passive: true,
+      once: true,
+    });
+
+    /*
+     * Resume playback when visitor comes back
+     * to the browser tab.
+     */
     const handleVisibilityChange = () => {
-      const currentVideo = videoRef.current;
-
       if (
         document.visibilityState === "visible" &&
-        currentVideo?.paused
+        video.paused
       ) {
-        currentVideo.play().catch(() => {
-          currentVideo.muted = true;
-          currentVideo.play().catch(console.error);
-        });
+        video.play().catch(() => {});
       }
     };
 
@@ -133,6 +115,8 @@ export default function Hero() {
     );
 
     return () => {
+      video.removeEventListener("loadeddata", playVideo);
+
       removeInteractionListeners();
 
       document.removeEventListener(
@@ -147,7 +131,6 @@ export default function Hero() {
       <div
         className="
           relative
-          overflow-hidden
           px-3
           pt-[88px]
           sm:px-4
@@ -155,23 +138,21 @@ export default function Hero() {
           md:pt-[105px]
         "
       >
-        <motion.div
-          style={isDesktop ? { scale: videoScale } : undefined}
+        <div
           className="
             relative
             mx-auto
-            h-[calc(100svh-105px)]
-            min-h-[520px]
+            h-[calc(100svh-100px)]
+            min-h-[480px]
+            w-full
             max-w-[1850px]
             overflow-hidden
             rounded-[18px]
-            border
-            border-white/10
-            bg-black
-            sm:h-[calc(100svh-115px)]
-            sm:min-h-[600px]
+            bg-[#111111]
+            sm:h-[calc(100svh-110px)]
+            sm:min-h-[560px]
             sm:rounded-[24px]
-            md:h-[calc(100dvh-125px)]
+            md:h-[calc(100vh-120px)]
             md:min-h-[650px]
             md:rounded-[30px]
           "
@@ -179,11 +160,39 @@ export default function Hero() {
           <video
             ref={videoRef}
             autoPlay
+            muted
             loop
             playsInline
             preload="auto"
-            poster="/hero-poster.jpg"
+            controls={false}
             disablePictureInPicture
+            controlsList="nodownload nofullscreen noplaybackrate"
+            onLoadedMetadata={(event) => {
+              const video = event.currentTarget;
+
+              video.muted = true;
+              video.defaultMuted = true;
+              video.playsInline = true;
+            }}
+            onCanPlay={(event) => {
+              const video = event.currentTarget;
+
+              video.play().catch(() => {
+                video.muted = true;
+                video.defaultMuted = true;
+                video.play().catch(() => {});
+              });
+            }}
+            onError={(event) => {
+              const video = event.currentTarget;
+
+              console.warn(
+                "Hero video failed:",
+                `code=${video.error?.code ?? 0}`,
+                `message=${video.error?.message ?? "Unknown error"}`,
+                `source=${video.currentSrc}`
+              );
+            }}
             className="
               absolute
               inset-0
@@ -194,7 +203,10 @@ export default function Hero() {
               object-center
             "
           >
-            <source src="/hero.mp4" type="video/mp4" />
+            <source
+              src="/hero.mp4?v=2"
+              type="video/mp4"
+            />
           </video>
 
           <div
@@ -204,27 +216,12 @@ export default function Hero() {
               inset-0
               z-10
               bg-gradient-to-t
-              from-black/15
+              from-black/10
               via-transparent
               to-black/5
             "
           />
-
-          <div
-            className="
-              pointer-events-none
-              absolute
-              inset-0
-              z-10
-              opacity-[0.06]
-              mix-blend-soft-light
-            "
-            style={{
-              backgroundImage:
-                "url('https://grainy-gradients.vercel.app/noise.svg')",
-            }}
-          />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
