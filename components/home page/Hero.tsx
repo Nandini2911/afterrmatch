@@ -12,7 +12,6 @@ export default function Hero() {
       <div
         className="
           relative
-          overflow-hidden
           px-3
           sm:px-4
           pt-[88px]
