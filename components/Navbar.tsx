@@ -220,7 +220,7 @@ export default function Navbar() {
     }}
   >
     <Image
-      src="/logo.png"
+      src="/afterrlogo.webp"
       alt="Afterr Match"
       width={160}
       height={50}
