@@ -1,35 +1,57 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Volume2, VolumeX } from "lucide-react";
 
 export default function Hero() {
-  const { scrollY } = useScroll();
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const [isMuted, setIsMuted] = useState(true);
-
+  const { scrollY } = useScroll();
   const videoScale = useTransform(scrollY, [0, 500], [1, 1.04]);
 
-  const toggleSound = async () => {
+  useEffect(() => {
     const video = videoRef.current;
 
     if (!video) return;
 
-    const shouldMute = !video.muted;
+    // Start video automatically in muted mode
+    video.muted = true;
+    video.volume = 1;
 
-    video.muted = shouldMute;
-    setIsMuted(shouldMute);
+    void video.play().catch((error) => {
+      console.error("Muted autoplay failed:", error);
+    });
 
-    if (!shouldMute) {
+    // Turn sound on after the visitor's first interaction
+    const enableSound = async () => {
       try {
+        video.muted = false;
+        video.defaultMuted = false;
+        video.volume = 1;
+
+        video.removeAttribute("muted");
+
         await video.play();
+
+        // Remove listeners after sound is enabled
+        window.removeEventListener("pointerdown", enableSound);
+        window.removeEventListener("touchstart", enableSound);
+        window.removeEventListener("keydown", enableSound);
       } catch (error) {
-        console.error("Unable to play video with audio:", error);
+        console.error("Audio playback failed:", error);
       }
-    }
-  };
+    };
+
+    window.addEventListener("pointerdown", enableSound, { once: true });
+    window.addEventListener("touchstart", enableSound, { once: true });
+    window.addEventListener("keydown", enableSound, { once: true });
+
+    return () => {
+      window.removeEventListener("pointerdown", enableSound);
+      window.removeEventListener("touchstart", enableSound);
+      window.removeEventListener("keydown", enableSound);
+    };
+  }, []);
 
   return (
     <section className="relative bg-white">
@@ -62,7 +84,7 @@ export default function Hero() {
           <video
             ref={videoRef}
             autoPlay
-            muted={isMuted}
+            muted
             loop
             playsInline
             preload="auto"
@@ -75,10 +97,8 @@ export default function Hero() {
             "
           >
             <source src="/hero.MP4" type="video/mp4" />
-            Your browser does not support the video element.
           </video>
 
-          {/* Grain effect */}
           <div
             className="
               pointer-events-none
@@ -93,9 +113,9 @@ export default function Hero() {
             }}
           />
 
-          {/* Hero content */}
           <div
             className="
+              pointer-events-none
               relative
               z-20
               flex
@@ -108,48 +128,6 @@ export default function Hero() {
               sm:px-6
             "
           />
-
-          {/* Audio control */}
-          <button
-            type="button"
-            onClick={toggleSound}
-            aria-label={isMuted ? "Enable video sound" : "Mute video sound"}
-            className="
-              absolute
-              bottom-6
-              right-6
-              z-30
-              flex
-              h-12
-              w-12
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-white/30
-              bg-black/35
-              text-white
-              shadow-lg
-              backdrop-blur-md
-              transition
-              duration-300
-              hover:scale-105
-              hover:bg-black/55
-              focus:outline-none
-              focus:ring-2
-              focus:ring-white/70
-              sm:bottom-8
-              sm:right-8
-              sm:h-14
-              sm:w-14
-            "
-          >
-            {isMuted ? (
-              <VolumeX className="h-5 w-5 sm:h-6 sm:w-6" />
-            ) : (
-              <Volume2 className="h-5 w-5 sm:h-6 sm:w-6" />
-            )}
-          </button>
         </motion.div>
       </div>
     </section>
