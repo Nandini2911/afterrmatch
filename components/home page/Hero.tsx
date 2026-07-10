@@ -1,31 +1,146 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hasSound, setHasSound] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
+  const prefersReducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
-  const videoScale = useTransform(scrollY, [0, 500], [1, 1.04]);
 
-  const enableSound = async () => {
+  const videoScale = useTransform(
+    scrollY,
+    [0, 500],
+    [1, prefersReducedMotion ? 1 : 1.04]
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    const updateDevice = () => {
+      setIsDesktop(mediaQuery.matches);
+    };
+
+    updateDevice();
+
+    mediaQuery.addEventListener("change", updateDevice);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateDevice);
+    };
+  }, []);
+
+  useEffect(() => {
     const video = videoRef.current;
 
-    if (!video || hasSound) return;
+    if (!video) return;
 
-    try {
-      video.muted = false;
-      video.defaultMuted = false;
-      video.volume = 1;
+    video.volume = 1;
 
-      await video.play();
-      setHasSound(true);
-    } catch (error) {
-      console.error("Mobile audio error:", error);
-    }
-  };
+    const startVideo = async () => {
+      try {
+        /*
+         * First try autoplaying with sound.
+         * This may work when the browser has already granted
+         * autoplay permission for the website.
+         */
+        video.muted = false;
+        video.defaultMuted = false;
+
+        await video.play();
+      } catch (error) {
+        /*
+         * Most mobile browsers will block sound autoplay.
+         * Keep the video visible by playing it muted.
+         */
+        try {
+          video.muted = true;
+          video.defaultMuted = true;
+
+          await video.play();
+        } catch (playError) {
+          console.error("Hero video could not autoplay:", playError);
+        }
+      }
+    };
+
+    startVideo();
+
+    /*
+     * Enable audio on the first interaction anywhere on the page.
+     * Nothing is displayed over the video.
+     */
+    const enableAudio = () => {
+      const currentVideo = videoRef.current;
+
+      if (!currentVideo) return;
+
+      currentVideo.muted = false;
+      currentVideo.defaultMuted = false;
+      currentVideo.volume = 1;
+
+      const playPromise = currentVideo.play();
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            removeInteractionListeners();
+          })
+          .catch((error) => {
+            console.error("Audio activation was blocked:", error);
+          });
+      }
+    };
+
+    const removeInteractionListeners = () => {
+      document.removeEventListener("pointerdown", enableAudio);
+      document.removeEventListener("touchstart", enableAudio);
+      document.removeEventListener("click", enableAudio);
+      document.removeEventListener("keydown", enableAudio);
+    };
+
+    document.addEventListener("pointerdown", enableAudio);
+    document.addEventListener("touchstart", enableAudio, {
+      passive: true,
+    });
+    document.addEventListener("click", enableAudio);
+    document.addEventListener("keydown", enableAudio);
+
+    const handleVisibilityChange = () => {
+      const currentVideo = videoRef.current;
+
+      if (
+        document.visibilityState === "visible" &&
+        currentVideo?.paused
+      ) {
+        currentVideo.play().catch(() => {
+          currentVideo.muted = true;
+          currentVideo.play().catch(console.error);
+        });
+      }
+    };
+
+    document.addEventListener(
+      "visibilitychange",
+      handleVisibilityChange
+    );
+
+    return () => {
+      removeInteractionListeners();
+
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+      );
+    };
+  }, []);
 
   return (
     <section className="relative bg-white">
@@ -41,66 +156,66 @@ export default function Hero() {
         "
       >
         <motion.div
-          style={{ scale: videoScale }}
-          onClick={enableSound}
-          onTouchEnd={enableSound}
+          style={isDesktop ? { scale: videoScale } : undefined}
           className="
             relative
             mx-auto
-            h-[110vh]
+            h-[calc(100svh-105px)]
+            min-h-[520px]
             max-w-[1850px]
-            cursor-pointer
             overflow-hidden
             rounded-[18px]
             border
             border-white/10
+            bg-black
+            sm:h-[calc(100svh-115px)]
+            sm:min-h-[600px]
             sm:rounded-[24px]
+            md:h-[calc(100dvh-125px)]
+            md:min-h-[650px]
             md:rounded-[30px]
           "
         >
           <video
             ref={videoRef}
             autoPlay
-            muted
             loop
             playsInline
             preload="auto"
+            poster="/hero-poster.jpg"
+            disablePictureInPicture
             className="
               absolute
               inset-0
+              block
               h-full
               w-full
               object-cover
+              object-center
             "
           >
             <source src="/hero.mp4" type="video/mp4" />
           </video>
-
-          {!hasSound && (
-            <div
-              className="
-                pointer-events-none
-                absolute
-                inset-x-0
-                bottom-8
-                z-30
-                text-center
-                text-sm
-                font-medium
-                tracking-wide
-                text-white
-                drop-shadow-lg
-              "
-            >
-              Tap anywhere for sound
-            </div>
-          )}
 
           <div
             className="
               pointer-events-none
               absolute
               inset-0
+              z-10
+              bg-gradient-to-t
+              from-black/15
+              via-transparent
+              to-black/5
+            "
+          />
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+              z-10
               opacity-[0.06]
               mix-blend-soft-light
             "
