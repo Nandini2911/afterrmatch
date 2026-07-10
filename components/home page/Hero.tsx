@@ -10,9 +10,7 @@ export default function Hero() {
 
     if (!video) return;
 
-    let soundEnabled = false;
-
-    // Required for reliable autoplay on mobile and desktop.
+    // Required for reliable autoplay on desktop and mobile.
     video.muted = true;
     video.defaultMuted = true;
     video.volume = 1;
@@ -22,33 +20,22 @@ export default function Hero() {
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
 
-    const startVideo = async () => {
+    const playVideo = async () => {
       try {
         video.muted = true;
         video.defaultMuted = true;
 
         await video.play();
       } catch (error) {
-        console.warn(
-          "Hero video autoplay was blocked:",
-          String(error)
-        );
+        console.warn("Hero autoplay blocked:", String(error));
       }
     };
 
-    const removeSoundListeners = () => {
-      window.removeEventListener("pointerdown", enableSound);
-      window.removeEventListener("touchstart", enableSound);
-      window.removeEventListener("keydown", enableSound);
-    };
-
     /*
-     * No sound button is shown.
-     * Audio starts after the visitor's first tap or click.
+     * No sound button is displayed.
+     * Sound starts after the first tap or click anywhere.
      */
     const enableSound = async () => {
-      if (soundEnabled) return;
-
       try {
         video.muted = false;
         video.defaultMuted = false;
@@ -57,15 +44,21 @@ export default function Hero() {
 
         await video.play();
 
-        soundEnabled = true;
-        removeSoundListeners();
+        removeInteractionListeners();
       } catch {
+        // Continue playing muted if sound is blocked.
         video.muted = true;
         video.defaultMuted = true;
         video.setAttribute("muted", "");
 
         video.play().catch(() => {});
       }
+    };
+
+    const removeInteractionListeners = () => {
+      window.removeEventListener("pointerdown", enableSound);
+      window.removeEventListener("touchstart", enableSound);
+      window.removeEventListener("keydown", enableSound);
     };
 
     const resumeVideo = () => {
@@ -77,7 +70,7 @@ export default function Hero() {
       }
     };
 
-    startVideo();
+    playVideo();
 
     window.addEventListener("pointerdown", enableSound, {
       passive: true,
@@ -95,7 +88,7 @@ export default function Hero() {
     );
 
     return () => {
-      removeSoundListeners();
+      removeInteractionListeners();
 
       document.removeEventListener(
         "visibilitychange",
@@ -126,7 +119,7 @@ export default function Hero() {
             max-w-[1850px]
             overflow-hidden
             rounded-[18px]
-            bg-[#111111]
+            bg-black
             sm:h-[calc(100svh-110px)]
             sm:min-h-[560px]
             sm:rounded-[24px]
@@ -135,21 +128,6 @@ export default function Hero() {
             md:rounded-[30px]
           "
         >
-          {/* Fallback image prevents a black section */}
-          <img
-            src="/hero_last.jpg"
-            alt=""
-            aria-hidden="true"
-            className="
-              absolute
-              inset-0
-              h-full
-              w-full
-              object-cover
-              object-center
-            "
-          />
-
           <video
             ref={videoRef}
             src="/hero.mp4"
@@ -158,12 +136,23 @@ export default function Hero() {
             loop
             playsInline
             preload="auto"
-            poster="/hero_last.jpg"
             controls={false}
             disablePictureInPicture
             controlsList="nodownload nofullscreen noplaybackrate"
+            onLoadedMetadata={(event) => {
+              const video = event.currentTarget;
+
+              video.muted = true;
+              video.defaultMuted = true;
+              video.playsInline = true;
+            }}
             onLoadedData={(event) => {
-              event.currentTarget.play().catch(() => {});
+              const video = event.currentTarget;
+
+              video.muted = true;
+              video.defaultMuted = true;
+
+              video.play().catch(() => {});
             }}
             onCanPlay={(event) => {
               event.currentTarget.play().catch(() => {});
@@ -183,7 +172,6 @@ export default function Hero() {
             className="
               absolute
               inset-0
-              z-[1]
               block
               h-full
               w-full
