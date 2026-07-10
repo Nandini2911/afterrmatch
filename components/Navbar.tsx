@@ -145,7 +145,7 @@ export default function Navbar() {
 
               <Link href="/">
                <Image
-    src="/logo.webp"
+    src="/afterrlogo.webp"
     alt="Afterr Match"
     width={180}
     height={70}
