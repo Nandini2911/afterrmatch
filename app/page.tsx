@@ -6,11 +6,11 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SplashScreen from "@/components/SplashScreen";
 
-import Hero from "@/components/home page/Hero";
 import Slider from "@/components/home page/Slider";
 import MeetThePros from "@/components/home page/MeetThePros";
 import AmenitiesSection from "@/components/home page/AmenitiesSection";
 import BecomeMemberSticky from "@/components/home page/BecomeMemberSticky";
+import HeroSection from "@/components/home page/herosection";
 
 export default function Home() {
   const [showSplash, setShowSplash] =
@@ -56,7 +56,7 @@ export default function Home() {
         `}
       >
         <Navbar />
-        <Hero />
+        <HeroSection/>
         <Slider />
         <MeetThePros />
         <AmenitiesSection />
