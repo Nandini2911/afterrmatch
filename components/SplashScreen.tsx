@@ -97,7 +97,7 @@ export default function SplashScreen() {
 
           {/* Logo */}
           <motion.img
-            src="/logo.png"
+            src="/logo.webp"
             alt="Aftermatch Logo"
             initial={{
               opacity: 0,

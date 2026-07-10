@@ -2,32 +2,28 @@
 
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Volume2, VolumeX } from "lucide-react";
 
 export default function Hero() {
-  const { scrollY } = useScroll();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [hasSound, setHasSound] = useState(false);
 
-  const [isMuted, setIsMuted] = useState(true);
-
+  const { scrollY } = useScroll();
   const videoScale = useTransform(scrollY, [0, 500], [1, 1.04]);
 
-  const toggleSound = async () => {
+  const enableSound = async () => {
     const video = videoRef.current;
 
-    if (!video) return;
+    if (!video || hasSound) return;
 
-    const shouldMute = !video.muted;
+    try {
+      video.muted = false;
+      video.defaultMuted = false;
+      video.volume = 1;
 
-    video.muted = shouldMute;
-    setIsMuted(shouldMute);
-
-    if (!shouldMute) {
-      try {
-        await video.play();
-      } catch (error) {
-        console.error("Unable to play video with audio:", error);
-      }
+      await video.play();
+      setHasSound(true);
+    } catch (error) {
+      console.error("Mobile audio error:", error);
     }
   };
 
@@ -46,11 +42,14 @@ export default function Hero() {
       >
         <motion.div
           style={{ scale: videoScale }}
+          onClick={enableSound}
+          onTouchEnd={enableSound}
           className="
             relative
             mx-auto
             h-[110vh]
             max-w-[1850px]
+            cursor-pointer
             overflow-hidden
             rounded-[18px]
             border
@@ -62,7 +61,7 @@ export default function Hero() {
           <video
             ref={videoRef}
             autoPlay
-            muted={isMuted}
+            muted
             loop
             playsInline
             preload="auto"
@@ -74,11 +73,29 @@ export default function Hero() {
               object-cover
             "
           >
-            <source src="/hero.MP4" type="video/mp4" />
-            Your browser does not support the video element.
+            <source src="/hero.mp4" type="video/mp4" />
           </video>
 
-          {/* Grain effect */}
+          {!hasSound && (
+            <div
+              className="
+                pointer-events-none
+                absolute
+                inset-x-0
+                bottom-8
+                z-30
+                text-center
+                text-sm
+                font-medium
+                tracking-wide
+                text-white
+                drop-shadow-lg
+              "
+            >
+              Tap anywhere for sound
+            </div>
+          )}
+
           <div
             className="
               pointer-events-none
@@ -92,64 +109,6 @@ export default function Hero() {
                 "url('https://grainy-gradients.vercel.app/noise.svg')",
             }}
           />
-
-          {/* Hero content */}
-          <div
-            className="
-              relative
-              z-20
-              flex
-              h-full
-              flex-col
-              items-center
-              justify-center
-              px-4
-              text-center
-              sm:px-6
-            "
-          />
-
-          {/* Audio control */}
-          <button
-            type="button"
-            onClick={toggleSound}
-            aria-label={isMuted ? "Enable video sound" : "Mute video sound"}
-            className="
-              absolute
-              bottom-6
-              right-6
-              z-30
-              flex
-              h-12
-              w-12
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-white/30
-              bg-black/35
-              text-white
-              shadow-lg
-              backdrop-blur-md
-              transition
-              duration-300
-              hover:scale-105
-              hover:bg-black/55
-              focus:outline-none
-              focus:ring-2
-              focus:ring-white/70
-              sm:bottom-8
-              sm:right-8
-              sm:h-14
-              sm:w-14
-            "
-          >
-            {isMuted ? (
-              <VolumeX className="h-5 w-5 sm:h-6 sm:w-6" />
-            ) : (
-              <Volume2 className="h-5 w-5 sm:h-6 sm:w-6" />
-            )}
-          </button>
         </motion.div>
       </div>
     </section>
