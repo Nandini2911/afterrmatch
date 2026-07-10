@@ -32,8 +32,6 @@ export default function Hero() {
             overflow-hidden
             rounded-[18px]
             sm:rounded-[24px]
-            md:h-[calc(100dvh-125px)]
-            md:min-h-[650px]
             md:rounded-[30px]
             border
             border-white/10
@@ -41,19 +39,16 @@ export default function Hero() {
         >
           <video
             autoPlay
+            muted
             loop
             playsInline
             preload="auto"
-            poster="/hero-poster.jpg"
-            disablePictureInPicture
             className="
               absolute
               inset-0
-              block
               h-full
               w-full
               object-cover
-              object-center
             "
           >
             <source src="/hero.MP4" type="video/MP4" />
@@ -63,20 +58,6 @@ export default function Hero() {
             className="
               absolute
               inset-0
-              z-10
-              bg-gradient-to-t
-              from-black/15
-              via-transparent
-              to-black/5
-            "
-          />
-
-          <div
-            className="
-              pointer-events-none
-              absolute
-              inset-0
-              z-10
               opacity-[0.06]
               mix-blend-soft-light
             "
