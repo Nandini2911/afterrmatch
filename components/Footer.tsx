@@ -194,7 +194,7 @@ export default function Footer() {
               <p className="text-center text-sm tracking-wide text-[#7c93a3] md:text-left">
                 © 2026{" "}
                 <span className="font-medium tracking-[0.15em] text-[#2B4E66]">
-                  AFTERRMATCH
+                  TWOPOINTZERO
                 </span>
                 . All rights reserved.
               </p>
