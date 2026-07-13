@@ -32,7 +32,7 @@ export default function RootLayout({
               j.async=true;
               j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
               f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-5J6M99HD');
+            })(window,document,'script','dataLayer','GTM-K6GH5TB9');
           `}
         </Script>
         {/* End Google Tag Manager */}
@@ -42,7 +42,7 @@ export default function RootLayout({
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-5J6M99HD"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-K6GH5TB9"
             height="0"
             width="0"
             style={{
