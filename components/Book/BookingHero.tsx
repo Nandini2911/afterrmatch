@@ -1,5 +1,24 @@
 "use client";
 
+const DISTRICT_BOOKING_URL =
+  "https://www.district.in/play/afterrmatch-afterrmatch-greater-noida-slots-booking";
+
+const PS5_WHATSAPP_URL = `https://wa.me/918376923453?text=${encodeURIComponent(
+  `🎮 NEW PS5 LOUNGE BOOKING REQUEST
+
+Hello After Match Team,
+
+I would like to reserve a PS5 Lounge slot.
+
+📅 Preferred Date:
+⏰ Preferred Time:
+👤 Name:
+📞 Contact Number:
+👥 Number of Players:
+
+Please confirm availability and booking details.`
+)}`;
+
 export default function BookingHero() {
   return (
     <section className="relative min-h-screen overflow-hidden pt-24 lg:pt-0">
@@ -7,8 +26,8 @@ export default function BookingHero() {
       <div className="absolute inset-0">
         <img
           src="/book page.png"
-          alt="Booking Background"
-          className="h-full w-full object-cover scale-105 animate-slowZoom"
+          alt="Afterrmatch booking background"
+          className="h-full w-full scale-105 object-cover animate-slowZoom"
         />
 
         <div className="absolute inset-0 bg-black/50" />
@@ -29,30 +48,23 @@ export default function BookingHero() {
           max-w-7xl
           items-center
           justify-center
-          lg:justify-start
           px-4
           sm:px-6
+          lg:justify-start
           lg:px-8
         "
       >
-        {/* Card */}
-        <div
-          className="
-            w-full
-            max-w-[340px]
-            sm:max-w-[360px]
-            animate-fadeUp
-          "
-        >
+        {/* Main Card */}
+        <div className="w-full max-w-[340px] animate-fadeUp sm:max-w-[380px]">
           <div
             className="
               rounded-[28px]
               border
               border-white/20
-              bg-[#0f1720]/40
+              bg-[#0f1720]/45
               p-5
-              backdrop-blur-2xl
               shadow-[0_20px_60px_rgba(0,0,0,0.35)]
+              backdrop-blur-2xl
             "
           >
             {/* Header */}
@@ -64,14 +76,13 @@ export default function BookingHero() {
               <h1
                 className="
                   text-3xl
-                  sm:text-4xl
-                  leading-[0.95]
                   font-semibold
+                  leading-[0.95]
                   text-white
+                  sm:text-4xl
                 "
                 style={{
-                  fontFamily:
-                    '"Cormorant Garamond", serif',
+                  fontFamily: '"Cormorant Garamond", serif',
                 }}
               >
                 Book Your
@@ -80,8 +91,7 @@ export default function BookingHero() {
               </h1>
 
               <p className="mt-3 text-sm leading-relaxed text-white/70">
-                Reserve your PS5 lounge or pool
-                table instantly.
+                Reserve your PS5 lounge or pool table instantly.
               </p>
             </div>
 
@@ -96,7 +106,7 @@ export default function BookingHero() {
                 backdrop-blur-xl
               "
             >
-              {/* Badge */}
+              {/* Availability Badge */}
               <div className="mb-5 flex justify-center">
                 <div
                   className="
@@ -104,19 +114,21 @@ export default function BookingHero() {
                     items-center
                     gap-2
                     rounded-full
-                    bg-green-500/15
+                    border
+                    border-green-400/20
+                    bg-green-500/10
                     px-3
                     py-1.5
                     text-xs
                     text-green-300
                   "
                 >
-                  <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
                   Available Now
                 </div>
               </div>
 
-              {/* Icon */}
+              {/* Main Icon */}
               <div
                 className="
                   mx-auto
@@ -127,144 +139,190 @@ export default function BookingHero() {
                   items-center
                   justify-center
                   rounded-full
+                  border
+                  border-white/10
                   bg-white/10
                   text-4xl
+                  shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]
                 "
               >
-                💬
+                🎟️
               </div>
 
-              {/* Title */}
               <h2
-                className="
-                  text-center
-                  text-2xl
-                  font-semibold
-                  text-white
-                "
+                className="text-center text-2xl font-semibold text-white"
                 style={{
-                  fontFamily:
-                    '"Cormorant Garamond", serif',
+                  fontFamily: '"Cormorant Garamond", serif',
                 }}
               >
-                WhatsApp Booking
+                Online Slot Booking
               </h2>
 
               <p className="mt-3 text-center text-sm leading-relaxed text-white/70">
-                Connect directly on WhatsApp and
-                reserve your preferred slot.
+                Select your preferred activity and continue with the booking.
               </p>
+
+              {/* Booking Options */}
               <div className="mt-6 grid grid-cols-2 gap-3">
-  {/* PS5 Lounge */}
-  <a
-    href={`https://wa.me/918376923453?text=${encodeURIComponent(
-      `🎮 NEW PS5 LOUNGE BOOKING REQUEST
+                {/* PS5 Lounge */}
+                <div
+                  className="
+                    flex
+                    min-h-[210px]
+                    flex-col
+                    items-center
+                    rounded-2xl
+                    border
+                    border-white/10
+                    bg-white/[0.07]
+                    p-3
+                    text-center
+                    shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]
+                  "
+                >
+                  <div
+                    className="
+                      flex
+                      h-12
+                      w-12
+                      items-center
+                      justify-center
+                      rounded-xl
+                      border
+                      border-white/10
+                      bg-white/10
+                      text-2xl
+                    "
+                  >
+                    🎮
+                  </div>
 
-Hello After Match Team,
+                  <h3 className="mt-3 text-sm font-semibold leading-tight text-white">
+                    Book PS5 Lounge
+                  </h3>
 
-I would like to reserve a PS5 Lounge slot.
+                  <p className="mt-2 text-[10px] leading-relaxed text-white/50">
+                    Connect with our team and confirm your slot.
+                  </p>
 
-📅 Preferred Date:
-⏰ Preferred Time:
-👤 Name:
-📞 Contact Number:
-👥 Number of Players:
+                  <a
+                    href={PS5_WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Book PS5 Lounge through WhatsApp"
+                    className="
+                      group
+                      mt-auto
+                      flex
+                      w-full
+                      items-center
+                      justify-center
+                      gap-1.5
+                      rounded-xl
+                      border
+                      border-[#25D366]/30
+                      bg-[#25D366]/15
+                      px-3
+                      py-2.5
+                      text-[11px]
+                      font-semibold
+                      text-green-300
+                      transition-all
+                      duration-300
+                      hover:border-[#25D366]/60
+                      hover:bg-[#25D366]
+                      hover:text-white
+                      hover:shadow-[0_8px_25px_rgba(37,211,102,0.25)]
+                    "
+                  >
+                    Book Now
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </a>
+                </div>
 
-Please confirm availability and booking details.`
-    )}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="
-      group
-      flex
-      flex-col
-      items-center
-      justify-center
-      rounded-2xl
-      border
-      border-white/10
-      bg-white/10
-      p-4
-      text-white
-      transition-all
-      duration-300
-      hover:bg-[#25D366]/20
-      hover:border-[#25D366]/60
-      hover:shadow-lg
-      hover:shadow-[#25D366]/20
-      hover:scale-105
-    "
-  >
-    <span className="text-3xl transition-transform duration-300 group-hover:scale-110">
-      🎮
-    </span>
+                {/* Pool Table */}
+                <div
+                  className="
+                    flex
+                    min-h-[210px]
+                    flex-col
+                    items-center
+                    rounded-2xl
+                    border
+                    border-white/10
+                    bg-white/[0.07]
+                    p-3
+                    text-center
+                    shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]
+                  "
+                >
+                  <div
+                    className="
+                      flex
+                      h-12
+                      w-12
+                      items-center
+                      justify-center
+                      rounded-xl
+                      border
+                      border-white/10
+                      bg-white/10
+                      text-2xl
+                    "
+                  >
+                    🎱
+                  </div>
 
-    <span className="mt-2 text-center text-sm font-semibold">
-      Book PS5 Lounge
-    </span>
+                  <h3 className="mt-3 text-sm font-semibold leading-tight text-white">
+                    Book Pool Table
+                  </h3>
 
-    <span className="mt-1 text-[11px] text-white/60 group-hover:text-green-300">
-      WhatsApp Booking
-    </span>
-  </a>
+                  <p className="mt-2 text-[10px] leading-relaxed text-white/50">
+                    Choose your preferred date and time on District.
+                  </p>
 
-  {/* Pool Table */}
-  <a
-    href={`https://wa.me/918376923453?text=${encodeURIComponent(
-      `🎱 NEW POOL TABLE BOOKING REQUEST
+                  <a
+                    href={DISTRICT_BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Book Pool Table on District"
+                    className="
+                      group
+                      mt-auto
+                      flex
+                      w-full
+                      items-center
+                      justify-center
+                      gap-1.5
+                      rounded-xl
+                      border
+                      border-white/20
+                      bg-white/10
+                      px-3
+                      py-2.5
+                      text-[11px]
+                      font-semibold
+                      text-white
+                      transition-all
+                      duration-300
+                      hover:border-white/40
+                      hover:bg-white
+                      hover:text-[#0f1720]
+                      hover:shadow-[0_8px_25px_rgba(0,0,0,0.25)]
+                    "
+                  >
+                    Book Now
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </a>
+                </div>
+              </div>
 
-Hello After Match Team,
-
-I would like to reserve a Pool Table slot.
-
-📅 Preferred Date:
-⏰ Preferred Time:
-👤 Name:
-📞 Contact Number:
-👥 Number of Players:
-
-Please confirm availability and booking details.`
-    )}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="
-      group
-      flex
-      flex-col
-      items-center
-      justify-center
-      rounded-2xl
-      border
-      border-white/10
-      bg-white/10
-      p-4
-      text-white
-      transition-all
-      duration-300
-      hover:bg-[#25D366]/20
-      hover:border-[#25D366]/60
-      hover:shadow-lg
-      hover:shadow-[#25D366]/20
-      hover:scale-105
-    "
-  >
-    <span className="text-3xl transition-transform duration-300 group-hover:scale-110">
-      🎱
-    </span>
-
-    <span className="mt-2 text-center text-sm font-semibold">
-      Book Pool Table
-    </span>
-
-    <span className="mt-1 text-[11px] text-white/60 group-hover:text-green-300">
-      WhatsApp Booking
-    </span>
-  </a>
-</div>
-
-
-              <p className="mt-3 text-center text-[11px] text-white/40">
-                Typically replies within a few minutes
+              <p className="mt-4 text-center text-[11px] text-white/40">
+                Select an activity to continue
               </p>
             </div>
           </div>
