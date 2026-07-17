@@ -19,6 +19,22 @@ I would like to reserve a PS5 Lounge slot.
 Please confirm availability and booking details.`
 )}`;
 
+const PICKLEBALL_WHATSAPP_URL = `https://wa.me/918376923453?text=${encodeURIComponent(
+  `🏓 NEW PICKLEBALL BOOKING REQUEST
+
+Hello After Match Team,
+
+I would like to reserve a Pickleball slot.
+
+📅 Preferred Date:
+⏰ Preferred Time:
+👤 Name:
+📞 Contact Number:
+👥 Number of Players:
+
+Please confirm availability and booking details.`
+)}`;
+
 export default function BookingHero() {
   return (
     <section className="relative min-h-screen overflow-hidden pt-24 lg:pt-0">
@@ -49,22 +65,25 @@ export default function BookingHero() {
           items-center
           justify-center
           px-4
+          py-10
           sm:px-6
           lg:justify-start
           lg:px-8
+          lg:py-12
         "
       >
         {/* Main Card */}
-        <div className="w-full max-w-[340px] animate-fadeUp sm:max-w-[380px]">
+        <div className="w-full max-w-[580px] animate-fadeUp">
           <div
             className="
               rounded-[28px]
               border
               border-white/20
               bg-[#0f1720]/45
-              p-5
+              p-4
               shadow-[0_20px_60px_rgba(0,0,0,0.35)]
               backdrop-blur-2xl
+              sm:p-5
             "
           >
             {/* Header */}
@@ -91,7 +110,8 @@ export default function BookingHero() {
               </h1>
 
               <p className="mt-3 text-sm leading-relaxed text-white/70">
-                Reserve your PS5 lounge or pool table instantly.
+                Reserve your PS5 lounge, pool table or pickleball slot
+                instantly.
               </p>
             </div>
 
@@ -163,12 +183,12 @@ export default function BookingHero() {
               </p>
 
               {/* Booking Options */}
-              <div className="mt-6 grid grid-cols-2 gap-3">
+              <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {/* PS5 Lounge */}
                 <div
                   className="
                     flex
-                    min-h-[210px]
+                    min-h-[220px]
                     flex-col
                     items-center
                     rounded-2xl
@@ -178,6 +198,11 @@ export default function BookingHero() {
                     p-3
                     text-center
                     shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:border-white/20
+                    hover:bg-white/[0.1]
                   "
                 >
                   <div
@@ -202,7 +227,7 @@ export default function BookingHero() {
                   </h3>
 
                   <p className="mt-2 text-[10px] leading-relaxed text-white/50">
-                    Connect with our team and confirm your slot.
+                    Connect with our team and confirm your gaming slot.
                   </p>
 
                   <a
@@ -246,7 +271,7 @@ export default function BookingHero() {
                 <div
                   className="
                     flex
-                    min-h-[210px]
+                    min-h-[220px]
                     flex-col
                     items-center
                     rounded-2xl
@@ -256,6 +281,11 @@ export default function BookingHero() {
                     p-3
                     text-center
                     shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:border-white/20
+                    hover:bg-white/[0.1]
                   "
                 >
                   <div
@@ -280,7 +310,7 @@ export default function BookingHero() {
                   </h3>
 
                   <p className="mt-2 text-[10px] leading-relaxed text-white/50">
-                    Choose your preferred date and time on District.
+                    Choose your preferred date and time through District.
                   </p>
 
                   <a
@@ -311,6 +341,89 @@ export default function BookingHero() {
                       hover:bg-white
                       hover:text-[#0f1720]
                       hover:shadow-[0_8px_25px_rgba(0,0,0,0.25)]
+                    "
+                  >
+                    Book Now
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </a>
+                </div>
+
+                {/* Pickleball */}
+                <div
+                  className="
+                    flex
+                    min-h-[220px]
+                    flex-col
+                    items-center
+                    rounded-2xl
+                    border
+                    border-white/10
+                    bg-white/[0.07]
+                    p-3
+                    text-center
+                    shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:border-white/20
+                    hover:bg-white/[0.1]
+                  "
+                >
+                  <div
+                    className="
+                      flex
+                      h-12
+                      w-12
+                      items-center
+                      justify-center
+                      rounded-xl
+                      border
+                      border-white/10
+                      bg-white/10
+                      text-2xl
+                    "
+                  >
+                    🏓
+                  </div>
+
+                  <h3 className="mt-3 text-sm font-semibold leading-tight text-white">
+                    Book Pickleball
+                  </h3>
+
+                  <p className="mt-2 text-[10px] leading-relaxed text-white/50">
+                    Connect with our team and reserve your court slot.
+                  </p>
+
+                  <a
+                    href={PICKLEBALL_WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Book Pickleball through WhatsApp"
+                    className="
+                      group
+                      mt-auto
+                      flex
+                      w-full
+                      items-center
+                      justify-center
+                      gap-1.5
+                      rounded-xl
+                      border
+                      border-[#25D366]/30
+                      bg-[#25D366]/15
+                      px-3
+                      py-2.5
+                      text-[11px]
+                      font-semibold
+                      text-green-300
+                      transition-all
+                      duration-300
+                      hover:border-[#25D366]/60
+                      hover:bg-[#25D366]
+                      hover:text-white
+                      hover:shadow-[0_8px_25px_rgba(37,211,102,0.25)]
                     "
                   >
                     Book Now
