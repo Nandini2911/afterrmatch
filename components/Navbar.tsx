@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
@@ -144,19 +144,22 @@ export default function Navbar() {
               {/* LOGO */}
 
               <Link href="/">
-               <Image
-    src="/afterrlogo.webp"
-    alt="Afterr Match"
-    width={180}
-    height={70}
-    priority
-    className="h-auto w-[110px]"
-  />
+                <Image
+                  src="/afterrlogo.webp"
+                  alt="Afterr Match"
+                  width={180}
+                  height={70}
+                  priority
+                  className="h-auto w-[110px]"
+                />
               </Link>
 
               {/* MENU BUTTON */}
 
               <motion.button
+                type="button"
+                aria-label={mobileMenu ? "Close menu" : "Open menu"}
+                aria-expanded={mobileMenu}
                 whileTap={{ scale: 0.92 }}
                 onClick={() => setMobileMenu(!mobileMenu)}
                 className="
@@ -213,88 +216,91 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center justify-between w-full">
               {/* LOGO */}
 
-             <Link href="/">
-  <motion.div
-    whileHover={{
-      scale: 1.03,
-    }}
-  >
-    <Image
-      src="/afterrlogo.webp"
-      alt="Afterr Match"
-      width={160}
-      height={50}
-      priority
-      className="h-auto w-[160px] xl:w-[150px]"
-    />
-  </motion.div>
-</Link>
+              <Link href="/">
+                <motion.div
+                  whileHover={{
+                    scale: 1.03,
+                  }}
+                >
+                  <Image
+                    src="/afterrlogo.webp"
+                    alt="Afterr Match"
+                    width={160}
+                    height={50}
+                    priority
+                    className="h-auto w-[160px] xl:w-[150px]"
+                  />
+                </motion.div>
+              </Link>
 
               {/* NAV LINKS */}
 
               <nav className="flex items-center gap-2">
-                {navLinks.map((item, index) => (
-                  <motion.a
-                    key={index}
-                    href={item.href}
+                {navLinks.map((item) => (
+                  <motion.div
+                    key={item.href}
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="
-                      group
-                      relative
-                      px-6
-                      py-3
-                      rounded-full
-                      text-[16px]
-                      font-medium
-                      text-[#2B4E66]
-                      overflow-hidden
-                      transition-colors
-                      duration-300
-                    "
-                    style={{
-                      fontFamily:
-                        'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
-                    }}
                   >
-                    {/* HOVER BG */}
-
-                    <span
+                    <Link
+                      href={item.href}
                       className="
-                        absolute
-                        inset-0
-                        rounded-full
-                        bg-[#2B4E66]
-                        scale-0
-                        opacity-0
-                        group-hover:scale-100
-                        group-hover:opacity-100
-                        transition-all
-                        duration-300
-                      "
-                    />
-
-                    {/* TEXT */}
-
-                    <span
-                      className="
+                        group
                         relative
-                        z-10
+                        block
+                        px-6
+                        py-3
+                        rounded-full
+                        text-[16px]
+                        font-medium
+                        text-[#2B4E66]
+                        overflow-hidden
                         transition-colors
                         duration-300
-                        group-hover:text-white
                       "
+                      style={{
+                        fontFamily:
+                          'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
+                      }}
                     >
-                      {item.name}
-                    </span>
-                  </motion.a>
+                      {/* HOVER BG */}
+
+                      <span
+                        className="
+                          absolute
+                          inset-0
+                          rounded-full
+                          bg-[#2B4E66]
+                          scale-0
+                          opacity-0
+                          group-hover:scale-100
+                          group-hover:opacity-100
+                          transition-all
+                          duration-300
+                        "
+                      />
+
+                      {/* TEXT */}
+
+                      <span
+                        className="
+                          relative
+                          z-10
+                          transition-colors
+                          duration-300
+                          group-hover:text-white
+                        "
+                      >
+                        {item.name}
+                      </span>
+                    </Link>
+                  </motion.div>
                 ))}
               </nav>
 
-              {/* CTA BUTTON */}
+              {/* CONTACT BUTTON */}
 
-              <motion.a
-                href="/membership"
+              <motion.div
                 whileHover={{
                   scale: 1.03,
                   y: -2,
@@ -302,42 +308,35 @@ export default function Navbar() {
                 whileTap={{
                   scale: 0.98,
                 }}
-                className="
-                  relative
-                  flex
-                  items-center
-                  justify-center
-                  h-[44px]
-                  px-4
-                  rounded-full
-                  bg-[#2B4E66]
-                  text-white
-                  text-[12px]
-                  font-semibold
-                  overflow-hidden
-                  shadow-[0_10px_30px_rgba(43,78,102,0.28)]
-                "
-                style={{
-                  fontFamily:
-                    'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
-                }}
               >
-                <span
+                <Link
+                  href="/contact"
                   className="
-                    absolute
-                    inset-0
-                    bg-white/10
-                    translate-y-full
-                    hover:translate-y-0
-                    transition-transform
-                    duration-500
+                    group
+                    relative
+                    flex
+                    items-center
+                    justify-center
+                    h-[44px]
+                    px-4
+                    rounded-full
+                    bg-[#2B4E66]
+                    text-white
+                    text-[12px]
+                    font-semibold
+                    overflow-hidden
+                    shadow-[0_10px_30px_rgba(43,78,102,0.28)]
                   "
-                />
+                  style={{
+                    fontFamily:
+                      'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
+                  }}
+                >
+               
 
-                <span className="relative z-10">
-                  Become a Member
-                </span>
-              </motion.a>
+                  <span className="relative z-10">Contact Us</span>
+                </Link>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -429,10 +428,8 @@ export default function Navbar() {
 
                 <div className="flex flex-col gap-3 mt-6">
                   {navLinks.map((item, index) => (
-                    <motion.a
-                      key={index}
-                      href={item.href}
-                      onClick={() => setMobileMenu(false)}
+                    <motion.div
+                      key={item.href}
                       initial={{
                         opacity: 0,
                         x: -20,
@@ -445,69 +442,74 @@ export default function Navbar() {
                         delay: index * 0.06,
                       }}
                       whileTap={{ scale: 0.98 }}
-                      className="
-                        group
-                        flex
-                        items-center
-                        justify-between
-                        px-6
-                        py-5
-                        rounded-[22px]
-                        bg-white/60
-                        border
-                        border-white/40
-                        text-[#2B4E66]
-                        text-[20px]
-                        font-medium
-                      "
-                      style={{
-                        fontFamily:
-                          'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
-                      }}
                     >
-                      <span>{item.name}</span>
-
-                      <span
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileMenu(false)}
                         className="
-                          text-[22px]
-                          opacity-40
-                          group-hover:translate-x-1
-                          transition-transform
+                          group
+                          flex
+                          items-center
+                          justify-between
+                          px-6
+                          py-5
+                          rounded-[22px]
+                          bg-white/60
+                          border
+                          border-white/40
+                          text-[#2B4E66]
+                          text-[20px]
+                          font-medium
                         "
+                        style={{
+                          fontFamily:
+                            'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
+                        }}
                       >
-                        →
-                      </span>
-                    </motion.a>
+                        <span>{item.name}</span>
+
+                        <span
+                          className="
+                            text-[22px]
+                            opacity-40
+                            group-hover:translate-x-1
+                            transition-transform
+                          "
+                        >
+                          →
+                        </span>
+                      </Link>
+                    </motion.div>
                   ))}
                 </div>
 
-                {/* CTA */}
+                {/* CONTACT BUTTON */}
 
-                <motion.a
-                  href="/membership"
-                  onClick={() => setMobileMenu(false)}
-                  whileTap={{ scale: 0.98 }}
-                  className="
-                    w-full
-                    h-[62px]
-                    rounded-full
-                    bg-[#2B4E66]
-                    text-white
-                    text-[17px]
-                    font-semibold
-                    shadow-[0_15px_40px_rgba(43,78,102,0.30)]
-                    flex
-                    items-center
-                    justify-center
-                  "
-                  style={{
-                    fontFamily:
-                      'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
-                  }}
-                >
-                    Become a Member
-                
-                </motion.a>
+                <motion.div whileTap={{ scale: 0.98 }}>
+                  <Link
+                    href="/contact"
+                    onClick={() => setMobileMenu(false)}
+                    className="
+                      w-full
+                      h-[62px]
+                      rounded-full
+                      bg-[#2B4E66]
+                      text-white
+                      text-[17px]
+                      font-semibold
+                      shadow-[0_15px_40px_rgba(43,78,102,0.30)]
+                      flex
+                      items-center
+                      justify-center
+                    "
+                    style={{
+                      fontFamily:
+                        'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
+                    }}
+                  >
+                    Contact Us
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
           </>
