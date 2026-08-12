@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth">
       <head>
         {/* Google Tag Manager */}
-        <Script id="google-tag-manager" strategy="afterInteractive">
+        <Script id="google-tag-manager" strategy="beforeInteractive">
           {`
             (function(w,d,s,l,i){
               w[l]=w[l]||[];
@@ -32,17 +32,37 @@ export default function RootLayout({
               j.async=true;
               j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
               f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-K6GH5TB9');
+            })(window,document,'script','dataLayer','GTM-PNDFC8QL');
           `}
         </Script>
         {/* End Google Tag Manager */}
+
+        {/* Google Ads Tag */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18308618225"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-ads-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag(){
+              dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+            gtag('config', 'AW-18308618225');
+          `}
+        </Script>
+        {/* End Google Ads Tag */}
       </head>
 
       <body className="antialiased" suppressHydrationWarning>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-K6GH5TB9"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PNDFC8QL"
             height="0"
             width="0"
             style={{
