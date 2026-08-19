@@ -106,7 +106,7 @@ export default function EventsGallerySection() {
                 <div
                   className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-110"
                   style={{
-                    backgroundImage: "url('/launch/launchday2.JPG')",
+                    backgroundImage: "url('/launch/launchday2.webp')",
                   }}
                 />
 

@@ -52,14 +52,17 @@ const galleryImages = [
 ];
 
 export default function GalleryAndCTASection() {
-  const ctaRef = useRef(null);
+  const ctaRef = useRef<HTMLElement | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: ctaRef,
     offset: ["start end", "end start"],
   });
 
-  // ZOOM IN → ZOOM OUT
+  // =====================================================
+  // CTA ZOOM IN → ZOOM OUT
+  // =====================================================
+
   const scale = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
@@ -74,21 +77,36 @@ export default function GalleryAndCTASection() {
 
   return (
     <>
-      {/* ========================= */}
-      {/* LUXURY GALLERY SECTION */}
-      {/* ========================= */}
+      {/* =========================================================
+          LUXURY GALLERY SECTION
+      ========================================================= */}
+
       <section className="relative overflow-hidden bg-white py-28 md:py-36">
-        {/* background glow */}
-        <div className="absolute left-[-200px] top-20 h-[420px] w-[420px] rounded-full bg-[#2B4E66]/10 blur-[140px]" />
-        <div className="absolute bottom-0 right-[-180px] h-[380px] w-[380px] rounded-full bg-[#2B4E66]/10 blur-[140px]" />
+        {/* BACKGROUND GLOW */}
+
+        <div className="pointer-events-none absolute left-[-200px] top-20 h-[420px] w-[420px] rounded-full bg-[#2B4E66]/10 blur-[140px]" />
+
+        <div className="pointer-events-none absolute bottom-0 right-[-180px] h-[380px] w-[380px] rounded-full bg-[#2B4E66]/10 blur-[140px]" />
+
+        {/* MAIN CONTAINER */}
 
         <div className="relative z-10 mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-14">
-          {/* heading */}
+
+          {/* =====================================================
+              HEADING
+          ===================================================== */}
+
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            viewport={{ once: true }}
+            transition={{
+              duration: 0.9,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             className="mb-20"
           >
             <p className="mb-4 text-sm font-medium uppercase tracking-[0.45em] text-[#2B4E66]/60">
@@ -120,20 +138,45 @@ export default function GalleryAndCTASection() {
             </h2>
           </motion.div>
 
-          {/* masonry grid */}
-          <div className="columns-1 gap-6 sm:columns-2 lg:columns-3 xl:columns-4">
+          {/* =====================================================
+              MASONRY GALLERY
+          ===================================================== */}
+
+          <div
+            className="
+              columns-1
+              gap-6
+              sm:columns-2
+              lg:columns-3
+              xl:columns-4
+            "
+          >
             {galleryImages.map((item, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                key={item.src}
+                initial={{
+                  opacity: 0,
+                  y: 50,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
                 transition={{
                   duration: 0.8,
                   delay: index * 0.05,
+                  ease: [0.22, 1, 0.36, 1],
                 }}
-                viewport={{ once: true }}
+                viewport={{
+                  once: true,
+                  amount: 0.1,
+                }}
                 className="mb-6 break-inside-avoid"
               >
+                {/* =================================================
+                    CARD
+                ================================================= */}
+
                 <div
                   className={`
                     group
@@ -146,22 +189,37 @@ export default function GalleryAndCTASection() {
                     ${item.height}
                   `}
                 >
+                  {/* =================================================
+                      IMAGE
+                  ================================================= */}
+
                   <Image
                     src={item.src}
                     alt={item.title}
                     fill
+                    sizes="
+                      (max-width: 640px) 100vw,
+                      (max-width: 1024px) 50vw,
+                      (max-width: 1280px) 33vw,
+                      25vw
+                    "
                     className="
                       object-cover
-                      transition-all
+                      transition-transform
                       duration-700
+                      ease-out
                       group-hover:scale-110
                     "
                   />
 
-                  {/* overlay */}
+                  {/* =================================================
+                      DARK GRADIENT
+                  ================================================= */}
+
                   <div
                     className="
-                      absolute inset-0
+                      absolute
+                      inset-0
                       bg-gradient-to-t
                       from-black/80
                       via-black/10
@@ -169,7 +227,10 @@ export default function GalleryAndCTASection() {
                     "
                   />
 
-                  {/* top glow */}
+                  {/* =================================================
+                      SUBTLE TOP GLOW
+                  ================================================= */}
+
                   <div
                     className="
                       absolute
@@ -184,7 +245,10 @@ export default function GalleryAndCTASection() {
                     "
                   />
 
-                  {/* text */}
+                  {/* =================================================
+                      TEXT
+                  ================================================= */}
+
                   <div className="absolute bottom-0 left-0 w-full p-6">
                     <p
                       className="
@@ -218,9 +282,10 @@ export default function GalleryAndCTASection() {
         </div>
       </section>
 
-      {/* ========================= */}
-      {/* FINAL CTA SECTION */}
-      {/* ========================= */}
+      {/* =========================================================
+          FINAL CTA SECTION
+      ========================================================= */}
+
       <section
         ref={ctaRef}
         className="
@@ -231,9 +296,10 @@ export default function GalleryAndCTASection() {
           md:py-44
         "
       >
-        
+        {/* =====================================================
+            CTA GLOW
+        ===================================================== */}
 
-        {/* glow */}
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
@@ -258,19 +324,46 @@ export default function GalleryAndCTASection() {
           "
         />
 
+        {/* =====================================================
+            CTA CONTENT
+        ===================================================== */}
+
         <motion.div
           style={{
             scale,
             opacity,
           }}
-          className="relative z-10 mx-auto max-w-[1200px] px-6 text-center will-change-transform"
+          className="
+            relative
+            z-10
+            mx-auto
+            max-w-[1200px]
+            px-6
+            text-center
+            will-change-transform
+          "
         >
-          {/* small text */}
+          {/* =================================================
+              SMALL TEXT
+          ================================================= */}
+
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             className="
               mb-6
               text-sm
@@ -283,12 +376,27 @@ export default function GalleryAndCTASection() {
             The Future Of Elite Sport Culture
           </motion.p>
 
-          {/* main heading */}
+          {/* =================================================
+              MAIN HEADING
+          ================================================= */}
+
           <motion.h2
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            viewport={{ once: true }}
+            initial={{
+              opacity: 0,
+              y: 60,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.9,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             className="
               mx-auto
               max-w-[1100px]
@@ -313,15 +421,28 @@ export default function GalleryAndCTASection() {
             OF SPORT
           </motion.h2>
 
-          {/* buttons */}
+          {/* =================================================
+              BUTTONS
+          ================================================= */}
+
           <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{
+              opacity: 0,
+              y: 35,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
             transition={{
               duration: 0.8,
               delay: 0.15,
+              ease: [0.22, 1, 0.36, 1],
             }}
-            viewport={{ once: true }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             className="
               mt-14
               flex
@@ -332,31 +453,34 @@ export default function GalleryAndCTASection() {
               sm:flex-row
             "
           >
-            {/* primary */}
-            <button
+            {/* =================================================
+                PRIMARY BUTTON
+            ================================================= */}
+
+            <a
+              href="/membership"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 group
                 relative
                 overflow-hidden
                 rounded-full
-                bg-[#2B4E66]
+                bg-white
                 px-5
                 py-2
                 text-sm
                 font-semibold
                 uppercase
-             
-                text-white
+                text-[#2B4E66]
                 transition-all
                 duration-500
                 hover:scale-105
-                hover:shadow-[0_0_60px_rgba(43,78,102,0.7)]
+                hover:shadow-[0_0_60px_rgba(255,255,255,0.25)]
               "
             >
-              <span className="relative z-5">
-                <a href="/membership" target="_blank" rel="noopener noreferrer">
-                  Become a Member
-                </a>
+              <span className="relative z-10">
+                Become a Member
               </span>
 
               <div
@@ -364,16 +488,22 @@ export default function GalleryAndCTASection() {
                   absolute
                   inset-0
                   -translate-x-full
-                  bg-white/20
+                  bg-[#2B4E66]/10
                   transition-transform
                   duration-700
                   group-hover:translate-x-0
                 "
               />
-            </button>
+            </a>
 
-            {/* secondary */}
-            <button
+            {/* =================================================
+                SECONDARY BUTTON
+            ================================================= */}
+
+            <a
+              href="/book"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 rounded-full
                 border
@@ -384,20 +514,18 @@ export default function GalleryAndCTASection() {
                 text-sm
                 font-semibold
                 uppercase
-                hover:text-[#2B4E66]
                 text-white
                 backdrop-blur-xl
                 transition-all
                 duration-500
                 hover:scale-105
-                hover:border-[#2B4E66]
+                hover:border-white
                 hover:bg-white
+                hover:text-[#2B4E66]
               "
             >
-              <a href="/book" target="_blank" rel="noopener noreferrer">
-                Book a Court
-              </a>
-            </button>
+              Book a Court
+            </a>
           </motion.div>
         </motion.div>
       </section>
