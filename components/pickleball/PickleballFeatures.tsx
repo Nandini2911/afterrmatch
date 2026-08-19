@@ -188,14 +188,14 @@ export default function PickleballFeatures() {
               lg:items-end
             "
           >
-            {features.map((feature, index) => {
-              const isActive = activeCard === index;
+           {features.map((feature, index) => {
+  const isActive = activeCard === index;
 
-              return (
-                <article
-                 
-                  onMouseEnter={() => setActiveCard(index)}
-                  onMouseLeave={() => setActiveCard(null)}
+  return (
+    <article
+      key={feature.title}
+      onMouseEnter={() => setActiveCard(index)}
+      onMouseLeave={() => setActiveCard(null)}
                   className={`
                     group
                     relative
