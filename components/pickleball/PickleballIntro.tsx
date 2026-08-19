@@ -87,7 +87,7 @@ export default function PickleballAbout() {
           <div className="group relative h-[440px] overflow-hidden sm:h-[580px]">
 
             <img
-              src="/servicepickleball1.jpg"
+              src="/servicepickleball1.webp"
               alt="Pickleball court experience"
               className="
                 h-full

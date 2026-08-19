@@ -10,42 +10,42 @@ import { useRef } from "react";
 
 const galleryImages = [
   {
-    src: "/ga1.jpg",
+    src: "/ga1.webp",
     height: "h-[320px]",
     title: "Championship Courts",
   },
   {
-    src: "/ga2.jpg",
+    src: "/ga2.webp",
     height: "h-[460px]",
     title: "Players Lounge",
   },
   {
-    src: "/ga3.jpg",
+    src: "/ga3.webp",
     height: "h-[380px]",
     title: "After Match Nights",
   },
   {
-    src: "/ga4.jpg",
+    src: "/ga4.webp",
     height: "h-[520px]",
     title: "Luxury Fashion",
   },
   {
-    src: "/ga5.jpg",
+    src: "/ga5.webp",
     height: "h-[340px]",
     title: "VIP Events",
   },
   {
-    src: "/ga6.jpg",
+    src: "/ga6.webp",
     height: "h-[500px]",
     title: "Elite Community",
   },
   {
-    src: "/ga7.jpg",
+    src: "/ga7.webp",
     height: "h-[390px]",
     title: "Padel Culture",
   },
   {
-    src: "/ga8.jpg",
+    src: "/ga8.webp",
     height: "h-[450px]",
     title: "Members Only",
   },

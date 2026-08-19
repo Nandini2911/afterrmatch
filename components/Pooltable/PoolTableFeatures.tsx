@@ -9,7 +9,7 @@ const features = [
     tagline: "Made to play.",
     description:
       "A dedicated pool table environment built around comfort, precision and the perfect game.",
-    image: "/servicepooltable2.jpg",
+    image: "/servicepooltable2.webp",
   },
   {
  
@@ -17,7 +17,7 @@ const features = [
     tagline: "Bring your people.",
     description:
       "Good games become better memories when you share them with the right people.",
-    image: "/servicepooltable3.png",
+    image: "/servicepooltable3.webp",
   },
   {
    
@@ -25,7 +25,7 @@ const features = [
     tagline: "Play your shot.",
     description:
       "Take your time, read the table and discover the satisfaction of making the perfect shot.",
-    image: "/servicepooltable4.jpg",
+    image: "/servicepooltable4.webp",
   },
   {
    
@@ -33,7 +33,7 @@ const features = [
     tagline: "Play your way.",
     description:
       "Choose your time, bring your game and make the table yours.",
-    image: "/servicepooltable5.png",
+    image: "/servicepooltable5.webp",
   },
 ];
 

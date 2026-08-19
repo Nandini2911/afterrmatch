@@ -9,7 +9,7 @@ const features = [
     tagline: "Ready to play.",
     description:
       "A dedicated gaming environment designed to make every session comfortable and immersive.",
-    image: "/serviceps5.png",
+    image: "/serviceps5.webp",
   },
   {
   
@@ -17,7 +17,7 @@ const features = [
     tagline: "Bring your people.",
     description:
       "Bring your friends, choose your game and turn an ordinary session into a great memory.",
-    image: "/serviceps51.png",
+    image: "/serviceps51.webp",
   },
   {
    
@@ -25,7 +25,7 @@ const features = [
     tagline: "Level up.",
     description:
       "Challenge your friends, test your skills and see who comes out on top.",
-    image: "/serviceps52.png",
+    image: "/serviceps52.webp",
   },
   {
 
@@ -33,7 +33,7 @@ const features = [
     tagline: "Play your way.",
     description:
       "Choose your game, set your pace and enjoy the freedom to play exactly how you want.",
-    image: "/ga7.jpg",
+    image: "/serviceps53.webp",
   },
 ];
 

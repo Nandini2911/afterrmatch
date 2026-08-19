@@ -107,7 +107,7 @@ export default function PickleballHero() {
       <div className="absolute inset-0 overflow-hidden">
         <img
           ref={imageRef}
-          src="/servicepickleball.png"
+          src="/servicepickleball.webp"
           alt="Pickleball court"
           className="
             h-full

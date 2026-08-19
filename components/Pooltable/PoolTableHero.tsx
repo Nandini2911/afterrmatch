@@ -106,7 +106,7 @@ export default function PoolTableHero() {
 
         <img
           ref={imageRef}
-          src="/servicepooltable.png"
+          src="/servicepooltable.webp"
           alt="Pool table experience"
           className="
             h-full

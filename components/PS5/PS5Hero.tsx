@@ -91,7 +91,7 @@ export default function PS5Hero() {
 
         <img
           ref={imageRef}
-          src="/serviceps5.png"
+          src="/serviceps5.webp"
           alt="PS5 gaming experience"
           className="h-full w-full object-cover will-change-transform"
           style={{

@@ -90,7 +90,7 @@ export default function PS5Intro() {
           <div className="group relative h-[440px] overflow-hidden sm:h-[580px]">
 
             <img
-              src="/serviceps53.png"
+              src="/serviceps53.webp"
               alt="PS5 gaming"
               className="
                 h-full

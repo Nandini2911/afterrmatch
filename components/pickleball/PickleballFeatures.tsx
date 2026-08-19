@@ -9,7 +9,7 @@ const features = [
     tagline: "Made to play.",
     description:
       "A dedicated environment built around movement, comfort and the perfect game.",
-    image: "/servicepickleball2.jpg",
+    image: "/servicepickleball2.webp",
   },
   {
   
@@ -17,7 +17,7 @@ const features = [
     tagline: "Bring your people.",
     description:
       "Good games become better memories when you share them with the right people.",
-    image: "/servicepickleball3.jpg",
+    image: "/servicepickleball3.webp",
   },
   {
     
@@ -25,7 +25,7 @@ const features = [
     tagline: "Easy to start.",
     description:
       "Pick up a paddle, step onto the court and discover why the game is hard to put down.",
-    image: "/servicepickleball4.png",
+    image: "/servicepickleball4.webp",
   },
   {
    
@@ -33,7 +33,7 @@ const features = [
     tagline: "Play your way.",
     description:
       "Choose your time, bring your game and make the court yours.",
-    image: "/servicepickleball5.png",
+    image: "/servicepickleball5.webp",
   },
 ];
 

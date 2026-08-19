@@ -118,7 +118,7 @@ export default function PoolTableIntro() {
           >
 
             <img
-              src="/servicepooltable1.png"
+              src="/servicepooltable1.webp"
               alt="Pool table experience"
               className="
                 h-full
