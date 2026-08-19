@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import FloatingContact from "@/components/FloatingContact";
 
 export const metadata: Metadata = {
   title: "Aftermatch",
   description: "Luxury Creative Studio",
-};
 
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+};
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -75,6 +81,7 @@ export default function RootLayout({
         {/* End Google Tag Manager (noscript) */}
 
         {children}
+         <FloatingContact />
       </body>
     </html>
   );
