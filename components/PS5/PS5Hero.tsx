@@ -26,39 +26,92 @@ export default function PS5Hero() {
 
         const rect = section.getBoundingClientRect();
 
-        const scrollableDistance =
-          section.offsetHeight - window.innerHeight;
-
-        const progress = Math.min(
-          Math.max(
-            -rect.top / Math.max(scrollableDistance, 1),
-            0
-          ),
+        const scrollableDistance = Math.max(
+          section.offsetHeight - window.innerHeight,
           1
         );
 
-        /* IMAGE MOTION */
+        const progress = Math.min(
+          Math.max(-rect.top / scrollableDistance, 0),
+          1
+        );
 
-        const imageScale = 1.04 + progress * 0.18;
-        const imageMove = progress * 25;
+        const width = window.innerWidth;
+
+        /* =====================================================
+           RESPONSIVE ANIMATION
+        ===================================================== */
+
+        let imageZoom = 0.14;
+        let imageMove = 24;
+        let textZoom = 0.07;
+        let textMove = -30;
+
+        /*
+          MOBILE
+          Since we now have a dedicated portrait image,
+          don't aggressively zoom or move it.
+        */
+
+        if (width < 640) {
+          imageZoom = 0.015;
+          imageMove = 3;
+          textZoom = 0.015;
+          textMove = -6;
+        }
+
+        /*
+          TABLET
+        */
+
+        else if (width < 1024) {
+          imageZoom = 0.06;
+          imageMove = 12;
+          textZoom = 0.04;
+          textMove = -18;
+        }
+
+        /*
+          DESKTOP
+        */
+
+        else {
+          imageZoom = 0.14;
+          imageMove = 24;
+          textZoom = 0.07;
+          textMove = -30;
+        }
+
+        /* =====================================================
+           IMAGE PARALLAX
+        ===================================================== */
+
+        const imageScale = 1 + progress * imageZoom;
+        const imageTranslate = progress * imageMove;
 
         image.style.transform = `
-          translate3d(0, ${imageMove}px, 0)
+          translate3d(0, ${imageTranslate}px, 0)
           scale(${imageScale})
         `;
 
-        /* TEXT MOTION */
+        /* =====================================================
+           TEXT PARALLAX
+        ===================================================== */
 
-        const textScale = 1 + progress * 0.08;
-        const textMove = progress * -35;
-        const textOpacity = 1 - progress * 0.15;
+        const contentScale = 1 + progress * textZoom;
+        const contentTranslate = progress * textMove;
+
+        const contentOpacity = Math.max(
+          0.82,
+          1 - progress * 0.15
+        );
 
         content.style.transform = `
-          translate3d(0, ${textMove}px, 0)
-          scale(${textScale})
+          translate3d(0, ${contentTranslate}px, 0)
+          scale(${contentScale})
         `;
 
-        content.style.opacity = `${textOpacity}`;
+        content.style.opacity = `${contentOpacity}`;
       });
     };
 
@@ -83,68 +136,123 @@ export default function PS5Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[130vh] overflow-hidden text-white"
+      className="
+        relative
+        min-h-[100svh]
+        overflow-hidden
+        bg-[#172F40]
+        text-white
+
+        sm:min-h-[110svh]
+
+        md:min-h-[125svh]
+
+        lg:min-h-[150vh]
+      "
     >
-      {/* BACKGROUND */}
+      {/* =====================================================
+          BACKGROUND IMAGE
+      ===================================================== */}
 
       <div className="absolute inset-0 overflow-hidden">
 
-        <img
-          ref={imageRef}
-          src="/serviceps5.webp"
-          alt="PS5 gaming experience"
-          className="h-full w-full object-cover will-change-transform"
-          style={{
-            transform: "translate3d(0, 0, 0) scale(1.04)",
-            transformOrigin: "center center",
-          }}
+        <picture>
+          {/* =================================================
+              MOBILE IMAGE
+          ================================================= */}
+
+          <source
+            media="(max-width: 639px)"
+            srcSet="/serviceps5.webp"
+          />
+
+          {/* =================================================
+              DESKTOP / TABLET IMAGE
+          ================================================= */}
+
+          <img
+            ref={imageRef}
+            src="/serviceps5.webp"
+            alt="PS5 court experience"
+            className="
+              absolute
+              inset-0
+              h-full
+              w-full
+              object-cover
+              object-center
+              will-change-transform
+            "
+            style={{
+              transform:
+                "translate3d(0, 0, 0) scale(1)",
+              transformOrigin: "center center",
+            }}
+          />
+        </picture>
+
+        {/* =================================================
+            GENERAL IMAGE OVERLAY
+        ================================================= */}
+
+        <div
+          className="
+            absolute
+            inset-0
+            bg-black/[0.05]
+          "
         />
 
-        <div className="absolute inset-0 bg-black/20" />
+        {/* =================================================
+            MOBILE BOTTOM GRADIENT
+        ================================================= */}
 
         <div
           className="
             absolute
             inset-x-0
             bottom-0
-            h-[65%]
+            h-[48%]
             bg-gradient-to-t
-            from-[#172F40]/90
-            via-[#172F40]/30
+            from-[#172F40]
+            via-[#172F40]/65
+            to-transparent
+
+            sm:h-[52%]
+            sm:from-[#172F40]/95
+            sm:via-[#172F40]/50
+
+            md:h-[58%]
+            md:from-[#172F40]/90
+            md:via-[#172F40]/30
+
+            lg:h-[65%]
+            lg:from-[#172F40]/85
+            lg:via-[#172F40]/25
+          "
+        />
+
+        {/* =================================================
+            TOP GRADIENT
+        ================================================= */}
+
+        <div
+          className="
+            absolute
+            inset-x-0
+            top-0
+            h-[18%]
+            bg-gradient-to-b
+            from-black/15
             to-transparent
           "
         />
 
       </div>
 
-      {/* TOP */}
-
-      <div
-        className="
-          absolute
-          left-6
-          right-6
-          top-8
-          z-20
-          flex
-          items-center
-          justify-between
-          sm:left-10
-          sm:right-10
-          lg:left-16
-          lg:right-16
-        "
-      >
-        <span className="text-[9px] uppercase tracking-[0.4em] text-white/50">
-          The Gaming Experience
-        </span>
-
-        <span className="text-[9px] tracking-[0.25em] text-white/40">
-          03
-        </span>
-      </div>
-
-      {/* CONTENT */}
+      {/* =====================================================
+          MAIN CONTENT
+      ===================================================== */}
 
       <div
         className="
@@ -152,13 +260,31 @@ export default function PS5Hero() {
           z-10
           mx-auto
           flex
-          min-h-[130vh]
-          max-w-[1500px]
-          items-center
-          px-6
-          py-32
-          sm:px-10
+          min-h-[100svh]
+          w-full
+          max-w-[1800px]
+          items-end
+          px-5
+          pb-[8.5rem]
+          pt-32
+
+          sm:min-h-[110svh]
+          sm:px-8
+          sm:pb-32
+
+          md:min-h-[125svh]
+          md:px-10
+          md:pb-36
+
+          lg:min-h-[140vh]
+          lg:items-center
           lg:px-16
+          lg:pb-20
+          lg:pt-32
+
+          xl:px-20
+
+          2xl:px-24
         "
       >
         <div
@@ -169,69 +295,173 @@ export default function PS5Hero() {
             origin-left
             will-change-transform
           "
+          style={{
+            transform:
+              "translate3d(0, 0, 0) scale(1)",
+            opacity: 1,
+          }}
         >
 
-          <div className="mb-8 flex items-center gap-4">
+          {/* =================================================
+              CATEGORY
+          ================================================= */}
 
-            <span className="text-[10px] uppercase tracking-[0.45em] text-white/60 sm:text-xs">
-              PS5
+          <div
+            className="
+              mb-5
+              flex
+              items-center
+              gap-3
+
+              sm:mb-7
+              sm:gap-4
+
+              md:mb-8
+
+              lg:mb-8
+            "
+          >
+
+            <span
+              className="
+                text-[8px]
+                uppercase
+                tracking-[0.38em]
+                text-white/70
+
+                sm:text-[9px]
+
+                md:text-[10px]
+
+                lg:text-xs
+                lg:tracking-[0.45em]
+              "
+            >
+              The PS5 Experience
             </span>
 
-            <span className="h-px w-16 bg-white/30" />
+            <span
+              className="
+                h-px
+                w-9
+                bg-white/40
+
+                sm:w-12
+
+                md:w-14
+
+                lg:w-16
+              "
+            />
 
           </div>
 
+          {/* =================================================
+              MAIN HEADING
+          ================================================= */}
+
           <h1
             className="
-              max-w-[1100px]
-              text-[20vw]
+              max-w-full
+              text-[clamp(4.2rem,17vw,6.5rem)]
               leading-[0.78]
               tracking-[-0.055em]
               text-white
-              sm:text-[15vw]
-              lg:text-[11vw]
-              xl:text-[9.5vw]
+
+              sm:max-w-[900px]
+              sm:text-[clamp(5rem,14vw,9rem)]
+
+              md:max-w-[1050px]
+              md:text-[clamp(6rem,12vw,10rem)]
+
+              lg:max-w-[1200px]
+              lg:text-[clamp(7rem,10vw,12rem)]
+
+              xl:max-w-[1400px]
+              xl:text-[clamp(8rem,9vw,13rem)]
+
+              2xl:max-w-[1550px]
+              2xl:text-[clamp(9rem,8vw,15rem)]
             "
             style={{
-              fontFamily: '"Cormorant Garamond", serif',
+              fontFamily:
+                '"Cormorant Garamond", serif',
               fontWeight: 400,
             }}
           >
             PS5
           </h1>
 
+          {/* =================================================
+              SUBTITLE
+          ================================================= */}
+
           <div
             className="
-              mt-8
+              mt-5
               flex
-              max-w-2xl
+              max-w-[390px]
               flex-col
-              gap-6
-              sm:mt-10
-              sm:flex-row
-              sm:items-start
-              sm:gap-12
+              gap-3
+
+              sm:mt-8
+              sm:max-w-[650px]
+              sm:gap-5
+
+              md:mt-9
+              md:max-w-[760px]
+              md:flex-row
+              md:items-start
+              md:gap-8
+
+              lg:mt-10
+              lg:max-w-[850px]
+              lg:gap-12
             "
           >
 
-            <span className="hidden h-px w-20 bg-white/40 sm:mt-4 sm:block" />
+            {/* LINE */}
+
+            <span
+              className="
+                hidden
+                h-px
+                shrink-0
+                bg-white/40
+
+                md:mt-4
+                md:block
+                md:w-14
+
+                lg:mt-5
+                lg:w-20
+              "
+            />
+
+            {/* TEXT */}
 
             <p
               className="
-                max-w-xl
-                text-xl
-                leading-tight
-                text-white/85
-                sm:text-2xl
-                lg:text-3xl
+                max-w-[370px]
+                text-[1.4rem]
+                leading-[0.98]
+                text-white/90
+
+                sm:max-w-[550px]
+                sm:text-[1.8rem]
+
+                md:text-[2.1rem]
+
+                lg:text-[clamp(2rem,2.5vw,3rem)]
               "
               style={{
-                fontFamily: '"Cormorant Garamond", serif',
+                fontFamily:
+                  '"Cormorant Garamond", serif',
               }}
             >
-              Where every game becomes
-              <span className="italic text-white/60">
-                {" "}an experience.
+              Where movement meets{" "}
+              <span className="italic text-white/55">
+                momentum.
               </span>
             </p>
 
@@ -240,59 +470,102 @@ export default function PS5Hero() {
         </div>
       </div>
 
-      {/* SCROLL */}
+      {/* =====================================================
+          SCROLL INDICATOR
+      ===================================================== */}
 
       <div
         className="
           absolute
-          bottom-8
-          left-6
-          right-6
+          bottom-5
+          left-0
+          right-0
           z-20
-          sm:left-10
-          sm:right-10
-          lg:left-16
-          lg:right-16
+          flex
+          justify-center
+
+          sm:bottom-7
+
+          md:bottom-8
+
+          lg:bottom-9
         "
       >
 
-        <div className="absolute left-1/2 -translate-x-1/2">
+        <div
+          className="
+            relative
+            flex
+            h-14
+            w-14
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-white/30
+            bg-black/10
+            backdrop-blur-md
+            transition-all
+            duration-500
 
-          <div
+            sm:h-16
+            sm:w-16
+
+            md:h-[72px]
+            md:w-[72px]
+
+            lg:h-20
+            lg:w-20
+
+            hover:scale-110
+            hover:border-white/60
+          "
+        >
+
+          <span
             className="
-              relative
-              flex
-              h-20
-              w-20
-              items-center
-              justify-center
+              absolute
+              inset-1.5
               rounded-full
               border
-              border-white/30
-              backdrop-blur-sm
-              transition-all
-              duration-500
-              hover:scale-110
-              hover:border-white/60
+              border-white/10
+
+              sm:inset-2
+            "
+          />
+
+          <span
+            className="
+              text-[7px]
+              uppercase
+              tracking-[0.18em]
+              text-white/70
+
+              sm:text-[8px]
+
+              md:text-[9px]
             "
           >
-
-            <span className="absolute inset-2 rounded-full border border-white/10" />
-
-            <span className="text-[9px] uppercase tracking-[0.2em] text-white/70">
-              Scroll
-            </span>
-
-          </div>
+            Scroll
+          </span>
 
         </div>
 
       </div>
 
-      {/* GRAIN */}
+      {/* =====================================================
+          GRAIN
+      ===================================================== */}
 
-      <div className="pointer-events-none absolute inset-0 z-[5] opacity-[0.06]">
-
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-[5]
+          opacity-[0.045]
+        "
+      >
         <div
           className="h-full w-full"
           style={{
@@ -300,9 +573,7 @@ export default function PS5Hero() {
               "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.35'/%3E%3C/svg%3E\")",
           }}
         />
-
       </div>
-
     </section>
   );
 }

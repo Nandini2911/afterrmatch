@@ -8,13 +8,11 @@ export default function PoolTableIntro() {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState("");
 
-  const headingText =
-    "Aim better. Play smarter. Enjoy every break.";
+  const headingText = "Aim better. Play longer. Enjoy every break.";
 
   /* =========================
      SCROLL REVEAL
   ========================= */
-
   useEffect(() => {
     const section = sectionRef.current;
 
@@ -40,7 +38,6 @@ export default function PoolTableIntro() {
   /* =========================
      TYPEWRITER
   ========================= */
-
   useEffect(() => {
     if (!isVisible) return;
 
@@ -64,28 +61,9 @@ export default function PoolTableIntro() {
   return (
     <section
       ref={sectionRef}
-      className="
-        overflow-hidden
-        bg-white
-        px-6
-        py-24
-        sm:px-10
-        lg:px-16
-        lg:py-32
-      "
+      className="overflow-hidden bg-white px-6 py-24 sm:px-10 lg:px-16 lg:py-32"
     >
-
-      <div
-        className="
-          mx-auto
-          grid
-          max-w-7xl
-          items-center
-          gap-14
-          lg:grid-cols-2
-          lg:gap-20
-        "
-      >
+      <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
 
         {/* =====================================================
             LEFT IMAGE
@@ -106,20 +84,11 @@ export default function PoolTableIntro() {
             }
           `}
         >
-
-          <div
-            className="
-              group
-              relative
-              h-[440px]
-              overflow-hidden
-              sm:h-[580px]
-            "
-          >
+          <div className="group relative h-[440px] overflow-hidden sm:h-[580px]">
 
             <img
               src="/servicepooltable1.webp"
-              alt="Pool table experience"
+              alt="Pool Table table experience"
               className="
                 h-full
                 w-full
@@ -132,11 +101,9 @@ export default function PoolTableIntro() {
             />
 
             {/* Cinematic Overlay */}
-
             <div className="absolute inset-0 bg-gradient-to-t from-[#172F40]/60 via-transparent to-transparent" />
 
             {/* Image Label */}
-
             <div className="absolute bottom-8 left-8">
 
               <p className="text-[10px] uppercase tracking-[0.4em] text-white/60">
@@ -146,24 +113,24 @@ export default function PoolTableIntro() {
               <p
                 className="mt-2 text-3xl text-white sm:text-4xl"
                 style={{
-                  fontFamily:
-                    '"Cormorant Garamond", serif',
+                  fontFamily: '"Cormorant Garamond", serif',
                 }}
               >
-                Where the game begins.
+                Where every shot begins.
               </p>
 
             </div>
 
             {/* Image Number */}
-
             <div className="absolute right-7 top-7">
 
-          
+              <span className="text-xs tracking-[0.3em] text-white/50">
+                01
+              </span>
+
             </div>
 
           </div>
-
         </div>
 
         {/* =====================================================
@@ -185,7 +152,6 @@ export default function PoolTableIntro() {
         >
 
           {/* Eyebrow */}
-
           <div className="flex items-center gap-4">
 
             <span className="h-px w-10 bg-[#2B4E66]/30" />
@@ -197,29 +163,16 @@ export default function PoolTableIntro() {
           </div>
 
           {/* Heading */}
-
           <h2
-            className="
-              mt-7
-              max-w-2xl
-              text-5xl
-              leading-[0.95]
-              tracking-[-0.03em]
-              text-[#2B4E66]
-              sm:text-6xl
-              lg:text-7xl
-            "
+            className="mt-7 max-w-2xl text-5xl leading-[0.95] tracking-[-0.03em] text-[#2B4E66] sm:text-6xl lg:text-7xl"
             style={{
-              fontFamily:
-                '"Cormorant Garamond", serif',
+              fontFamily: '"Cormorant Garamond", serif',
               fontWeight: 400,
             }}
           >
-
             {typedText}
 
             {/* Typewriter Cursor */}
-
             <span
               className={`
                 ml-1
@@ -235,11 +188,9 @@ export default function PoolTableIntro() {
                 }
               `}
             />
-
           </h2>
 
           {/* Decorative Line */}
-
           <div
             className={`
               mt-8
@@ -257,7 +208,6 @@ export default function PoolTableIntro() {
           />
 
           {/* Description */}
-
           <p
             className={`
               mt-8
@@ -276,13 +226,12 @@ export default function PoolTableIntro() {
               }
             `}
           >
-            Pool is all about precision, patience and good
-            competition. Take your shot, read the table and
-            enjoy a game that rewards every little decision.
+            Pool Table is all about movement, energy and good
+            competition. Grab a cue, bring your friends and
+            enjoy a game that is easy to learn and hard to stop playing.
           </p>
 
           {/* Second Paragraph */}
-
           <p
             className={`
               mt-5
@@ -300,19 +249,41 @@ export default function PoolTableIntro() {
               }
             `}
           >
-            Whether you're discovering pool for the first time
-            or already know your way around the table, every
-            session gives you a chance to play, connect and
-            enjoy the moment.
+            Whether you are discovering the game for the first time
+            or already love being on the table, every session gives
+            you a chance to play, connect and have fun.
           </p>
 
           {/* Bottom Details */}
+          <div
+            className={`
+              mt-10
+              flex
+              items-center
+              gap-5
+              transition-all
+              duration-700
+              delay-[1400ms]
+              ${
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-5 opacity-0"
+              }
+            `}
+          >
 
+           
+
+
+            
+
+           
+
+          </div>
 
         </div>
 
       </div>
-
     </section>
   );
 }
