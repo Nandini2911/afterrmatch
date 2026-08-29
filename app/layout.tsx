@@ -4,7 +4,7 @@ import "./globals.css";
 import FloatingContact from "@/components/FloatingContact";
 
 export const metadata: Metadata = {
-  title: "Aftermatch",
+  title: "AfterrMatch",
   description: "Luxury Creative Studio",
 
   icons: {
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     apple: "/favicon.ico",
   },
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -41,9 +42,8 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-PNDFC8QL');
           `}
         </Script>
-        {/* End Google Tag Manager */}
 
-        {/* Google Ads Tag */}
+        {/* Google Ads */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18308618225"
           strategy="afterInteractive"
@@ -53,19 +53,55 @@ export default function RootLayout({
           {`
             window.dataLayer = window.dataLayer || [];
 
-            function gtag(){
-              dataLayer.push(arguments);
+            function gtag() {
+              window.dataLayer.push(arguments);
             }
 
             gtag('js', new Date());
             gtag('config', 'AW-18308618225');
           `}
         </Script>
-        {/* End Google Ads Tag */}
+
+        {/* Meta Pixel */}
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s) {
+              if(f.fbq) return;
+
+              n=f.fbq=function() {
+                n.callMethod
+                  ? n.callMethod.apply(n,arguments)
+                  : n.queue.push(arguments);
+              };
+
+              if(!f._fbq) f._fbq=n;
+
+              n.push=n;
+              n.loaded=!0;
+              n.version='2.0';
+              n.queue=[];
+
+              t=b.createElement(e);
+              t.async=!0;
+              t.src=v;
+
+              s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s);
+            }(
+              window,
+              document,
+              'script',
+              'https://connect.facebook.net/en_US/fbevents.js'
+            );
+
+            fbq('init', '1708766323754848');
+            fbq('track', 'PageView');
+          `}
+        </Script>
       </head>
 
       <body className="antialiased" suppressHydrationWarning>
-        {/* Google Tag Manager (noscript) */}
+        {/* Google Tag Manager fallback */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-PNDFC8QL"
@@ -78,10 +114,20 @@ export default function RootLayout({
             title="Google Tag Manager"
           />
         </noscript>
-        {/* End Google Tag Manager (noscript) */}
+
+        {/* Meta Pixel fallback */}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1708766323754848&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
 
         {children}
-         <FloatingContact />
+        <FloatingContact />
       </body>
     </html>
   );
