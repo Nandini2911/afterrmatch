@@ -41,8 +41,8 @@ const premiumEase = [0.22, 1, 0.36, 1] as const;
 const quickContacts = [
   {
     label: "Contact",
-    value: "+91 9217057386",
-    href: "tel:+919217057386",
+    value: "+91 9311821282",
+    href: "tel:+919311821282",
     icon: Phone,
     external: false,
   },
