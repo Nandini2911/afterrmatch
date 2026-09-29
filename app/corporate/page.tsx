@@ -1,4 +1,5 @@
-import AfterrmatchCorporate from "../../components/afterrmatch/AfterrmatchCorporate";
+import AfterrmatchCorporate from "@/components/afterrmatch/AfterrmatchCorporate";
+
 
 export const metadata = {
   title: "Afterrmatch | Corporate Events & Brand Experiences",
