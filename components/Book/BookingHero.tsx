@@ -3,7 +3,7 @@
 const DISTRICT_BOOKING_URL =
   "https://www.district.in/play/afterrmatch-afterrmatch-greater-noida-slots-booking";
 
-const PS5_WHATSAPP_URL = `https://wa.me/918376923453?text=${encodeURIComponent(
+const PS5_WHATSAPP_URL = `https://wa.me/919311821282?text=${encodeURIComponent(
   `🎮 NEW PS5 LOUNGE BOOKING REQUEST
 
 Hello After Match Team,
@@ -19,7 +19,7 @@ I would like to reserve a PS5 Lounge slot.
 Please confirm availability and booking details.`
 )}`;
 
-const PICKLEBALL_WHATSAPP_URL = `https://wa.me/918376923453?text=${encodeURIComponent(
+const PICKLEBALL_WHATSAPP_URL = `https://wa.me/919311821282?text=${encodeURIComponent(
   `🏓 NEW PICKLEBALL BOOKING REQUEST
 
 Hello After Match Team,

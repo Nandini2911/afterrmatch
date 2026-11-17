@@ -16,89 +16,89 @@ type LaunchDayMedia = {
 const launchDayMedia: LaunchDayMedia[] = [
   {
     type: "image",
-    src: "/launch4.JPG",
+    src: "/launch4.webp",
   
   },
  
   {
     type: "image",
-    src: "/launch/launch5.JPG",
+    src: "/launch/launch5.webp",
   },
   {
     type: "image",
-    src: "/launch/launch6.JPG",
+    src: "/launch/launch6.webp",
   },
   {
     type: "image",
-    src: "/launch/launch7.JPG",
+    src: "/launch/launch7.webp",
   },
   {
     type: "image",
-    src: "/launch/launch8.JPG",
+    src: "/launch/launch8.webp",
   },  
   {
     type: "image",
-    src: "/launch/launch9.JPG", 
+    src: "/launch/launch9.webp", 
   },
   {
     type: "image",
-    src: "/launch/launch10.JPG",
+    src: "/launch/launch10.webp",
   },
   {
     type: "image",
-    src: "/launch/launch11.JPG",
+    src: "/launch/launch11.webp",
   },
   {
     type: "image",
-    src: "/launch/launch12.JPG",
+    src: "/launch/launch12.webp",
   },
   {
     type: "image",
-    src: "/launch/launch13.JPG",
+    src: "/launch/launch13.webp",
   },
   {
     type: "image", 
-    src: "/launch/launch14.JPG",
+    src: "/launch/launch14.webp",
   },
   {
     type: "image",
-    src: "/launch/launch15.JPG",
+    src: "/launch/launch15.webp",
   },
   {
     type: "image",
-    src: "/launch/launch16.JPG",
+    src: "/launch/launch16.webp",
   },
   {
     type: "image",
-    src: "/launch/launch17.JPG",
+    src: "/launch/launch17.webp",
   },
   {
     type: "image",
-    src: "/launch/launch18.JPG",
+    src: "/launch/launch18.webp",
   },
   {
     type: "image",
-    src: "/launch/launch19.JPG",
+    src: "/launch/launch19.webp",
   },
   {
     type: "image",
-    src: "/launch/launch20.JPG",
+    src: "/launch/launch20.webp",
   },
   {
     type: "image",
-    src: "/launch/launch21.JPG",
+    src: "/launch/launch21.webp",
   },
   {
     type: "image",
-    src: "/launch/launch22.JPG",
+    src: "/launch/launch22.webp",
   },
   {
     type: "image",
-    src: "/launch/launch23.JPG",
+    src: "/launch/launch23.webp",
   },
   {
     type: "image",
-    src: "/launch/launch24.JPG",
+    src: "/launch/launch24.webp",
   }
 ];
 

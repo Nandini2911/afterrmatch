@@ -7,19 +7,19 @@ const pros = [
   {
     name: "RUHAN KAPOOR",
     role: "FOUNDER & CEO",
-    image: "ruhan.jpeg",
+    image: "/ruhan.webp",
     desc: "Ruhan Kapoor is the founder of Afterrmatch, a next-generation social sports and lifestyle destination built to bring people together through sports, gaming, food, and community experiences.",
   },
   {
     name: "RATIK KAPOOR",
     role: "FOUNDER & CEO",
-    image: "ratik.jpeg",
+    image: "/ratik.webp",
     desc: "Ratik Kapoor is the Founder & CEO of Afterrmatch, a next-generation social sports and lifestyle destination built to make fitness enjoyable, accessible, and community-driven. A dedicated fitness enthusiast, he is redefining the way people stay active by bringing together world-class pickleball facilities, wellness activities, gaming, community events, and curated social experiences, creating a space where movement feels exciting and meaningful connections happen naturally.",
   },
   {
     name: "JITESH KAPOOR",
     role: "FOUNDER & CEO",
-    image: "jitesh.jpeg",
+    image: "/jitesh.webp",
     desc: "Jitesh Kapoor is an entrepreneur, Afro/Tech House DJ, and music producer dedicated to creating unique spaces where sports, culture, entertainment, and community come together.",
   },
 ];

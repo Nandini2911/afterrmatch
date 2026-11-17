@@ -12,11 +12,32 @@ const navLinks = [
   { name: "Events", href: "/events" },
 ];
 
+const services = [
+  {
+    name: "Pickleball",
+    href: "/services/pickleball",
+   
+   
+  },
+  {
+    name: "Pool Table",
+    href: "/services/pool-table",
+  },{
+    name: "PS5",
+    href: "/services/ps5",
+  
+  },
+];
+
 export default function Navbar() {
   const [showNavbar, setShowNavbar] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const lastScrollY = useRef(0);
+
+  /* =========================
+     NAVBAR SCROLL
+  ========================= */
 
   useEffect(() => {
     let ticking = false;
@@ -28,10 +49,12 @@ export default function Navbar() {
       if (currentScrollY < 40) {
         setShowNavbar(true);
       }
+
       // SCROLL DOWN
       else if (currentScrollY > lastScrollY.current) {
         setShowNavbar(false);
       }
+
       // SCROLL UP
       else {
         setShowNavbar(true);
@@ -48,12 +71,19 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, {
+      passive: true,
+    });
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
-  // LOCK BODY SCROLL
+  /* =========================
+     LOCK BODY SCROLL
+  ========================= */
+
   useEffect(() => {
     if (mobileMenu) {
       document.body.style.overflow = "hidden";
@@ -68,7 +98,9 @@ export default function Navbar() {
 
   return (
     <>
-      {/* NAVBAR */}
+      {/* =====================================================
+          NAVBAR
+      ===================================================== */}
 
       <motion.header
         initial={false}
@@ -107,24 +139,32 @@ export default function Navbar() {
             bg-[#2B4E66]
             backdrop-blur-2xl
             shadow-[0_10px_40px_rgba(0,0,0,0.08)]
-            overflow-hidden
+            overflow-visible
           "
         >
-          {/* SOFT GLOW */}
+
+          {/* =========================
+              SOFT GLOW
+          ========================= */}
 
           <div
             className="
               absolute
               inset-0
+              rounded-[24px]
+              md:rounded-[28px]
               bg-gradient-to-r
               from-[#2B4E66]/10
               via-white
               to-[#2B4E66]/10
               pointer-events-none
+              opacity-20
             "
           />
 
-          {/* CONTENT */}
+          {/* =========================
+              CONTENT
+          ========================= */}
 
           <div
             className="
@@ -138,9 +178,13 @@ export default function Navbar() {
               lg:px-14
             "
           >
-            {/* MOBILE */}
+
+            {/* =================================================
+                MOBILE NAV
+            ================================================= */}
 
             <div className="flex lg:hidden items-center justify-between w-full">
+
               {/* LOGO */}
 
               <Link href="/">
@@ -158,7 +202,9 @@ export default function Navbar() {
 
               <motion.button
                 type="button"
-                aria-label={mobileMenu ? "Close menu" : "Open menu"}
+                aria-label={
+                  mobileMenu ? "Close menu" : "Open menu"
+                }
                 aria-expanded={mobileMenu}
                 whileTap={{ scale: 0.92 }}
                 onClick={() => setMobileMenu(!mobileMenu)}
@@ -183,38 +229,84 @@ export default function Navbar() {
                 >
                   <motion.span
                     variants={{
-                      closed: { rotate: 0, y: 0 },
-                      open: { rotate: 45, y: 7 },
+                      closed: {
+                        rotate: 0,
+                        y: 0,
+                      },
+                      open: {
+                        rotate: 45,
+                        y: 7,
+                      },
                     }}
-                    transition={{ duration: 0.3 }}
-                    className="w-6 h-[2px] bg-[#2B4E66] rounded-full block"
+                    transition={{
+                      duration: 0.3,
+                    }}
+                    className="
+                      w-6
+                      h-[2px]
+                      bg-[#2B4E66]
+                      rounded-full
+                      block
+                    "
                   />
 
                   <motion.span
                     variants={{
-                      closed: { opacity: 1 },
-                      open: { opacity: 0 },
+                      closed: {
+                        opacity: 1,
+                      },
+                      open: {
+                        opacity: 0,
+                      },
                     }}
-                    transition={{ duration: 0.2 }}
-                    className="w-6 h-[2px] bg-[#2B4E66] rounded-full block"
+                    transition={{
+                      duration: 0.2,
+                    }}
+                    className="
+                      w-6
+                      h-[2px]
+                      bg-[#2B4E66]
+                      rounded-full
+                      block
+                    "
                   />
 
                   <motion.span
                     variants={{
-                      closed: { rotate: 0, y: 0 },
-                      open: { rotate: -45, y: -7 },
+                      closed: {
+                        rotate: 0,
+                        y: 0,
+                      },
+                      open: {
+                        rotate: -45,
+                        y: -7,
+                      },
                     }}
-                    transition={{ duration: 0.3 }}
-                    className="w-6 h-[2px] bg-[#2B4E66] rounded-full block"
+                    transition={{
+                      duration: 0.3,
+                    }}
+                    className="
+                      w-6
+                      h-[2px]
+                      bg-[#2B4E66]
+                      rounded-full
+                      block
+                    "
                   />
                 </motion.div>
               </motion.button>
             </div>
 
-            {/* DESKTOP */}
+
+            {/* =================================================
+                DESKTOP NAV
+            ================================================= */}
 
             <div className="hidden lg:flex items-center justify-between w-full">
-              {/* LOGO */}
+
+              {/* =========================
+                  LOGO
+              ========================= */}
 
               <Link href="/">
                 <motion.div
@@ -233,14 +325,26 @@ export default function Navbar() {
                 </motion.div>
               </Link>
 
-              {/* NAV LINKS */}
 
-              <nav className="flex items-center gap-2">
+              {/* =========================
+                  NAVIGATION
+              ========================= */}
+
+              <nav className="flex items-center gap-1">
+
+                {/* =========================
+                    NORMAL NAV LINKS
+                ========================= */}
+
                 {navLinks.map((item) => (
                   <motion.div
                     key={item.href}
-                    whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{
+                      y: -2,
+                    }}
+                    whileTap={{
+                      scale: 0.98,
+                    }}
                   >
                     <Link
                       href={item.href}
@@ -248,10 +352,10 @@ export default function Navbar() {
                         group
                         relative
                         block
-                        px-6
+                        px-5
                         py-3
                         rounded-full
-                        text-[16px]
+                        text-[15px]
                         font-medium
                         text-[#2B4E66]
                         overflow-hidden
@@ -263,14 +367,15 @@ export default function Navbar() {
                           'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
                       }}
                     >
-                      {/* HOVER BG */}
+
+                      {/* HOVER BACKGROUND */}
 
                       <span
                         className="
                           absolute
                           inset-0
                           rounded-full
-                          bg-[#2B4E66]
+                          bg-white
                           scale-0
                           opacity-0
                           group-hover:scale-100
@@ -286,19 +391,231 @@ export default function Navbar() {
                         className="
                           relative
                           z-10
+                          text-white
                           transition-colors
                           duration-300
-                          group-hover:text-white
+                          group-hover:text-[#2B4E66]
                         "
                       >
                         {item.name}
                       </span>
+
                     </Link>
                   </motion.div>
                 ))}
+
+
+                {/* =================================================
+                    SERVICES DROPDOWN
+                ================================================= */}
+
+                <div className="group relative">
+
+                  {/* SERVICES BUTTON */}
+
+                  <motion.button
+                    type="button"
+                    whileHover={{
+                      y: -2,
+                    }}
+                    className="
+                      flex
+                      items-center
+                      gap-2
+                      rounded-full
+                      px-5
+                      py-3
+                      text-[15px]
+                      font-medium
+                      text-white
+                      transition-all
+                      duration-300
+                      hover:bg-white
+                      hover:text-[#2B4E66]
+                    "
+                    style={{
+                      fontFamily:
+                        'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
+                    }}
+                  >
+                    Services
+
+                    <motion.span
+                      className="
+                        text-[13px]
+                        transition-transform
+                        duration-300
+                        group-hover:rotate-180
+                      "
+                    >
+                      ↓
+                    </motion.span>
+                  </motion.button>
+
+
+                  {/* =========================
+                      DROPDOWN
+                  ========================= */}
+
+                  <div
+                    className="
+                      pointer-events-none
+                      invisible
+                      absolute
+                      left-1/2
+                      top-full
+                      z-[100]
+                      w-[340px]
+                      -translate-x-1/2
+                      translate-y-3
+                      pt-4
+                      opacity-0
+                      transition-all
+                      duration-300
+                      group-hover:pointer-events-auto
+                      group-hover:visible
+                      group-hover:translate-y-0
+                      group-hover:opacity-100
+                    "
+                  >
+
+                    <div
+                      className="
+                        overflow-hidden
+                        rounded-[26px]
+                        border
+                        border-[#2B4E66]/10
+                        bg-white/95
+                        p-3
+                        shadow-[0_25px_80px_rgba(23,47,64,0.18)]
+                        backdrop-blur-2xl
+                      "
+                    >
+
+                      {/* DROPDOWN HEADER */}
+
+                      <div className="px-4 pb-3 pt-3">
+
+                        <div className="flex items-center gap-3">
+
+                          <span className="h-px w-8 bg-[#2B4E66]/25" />
+
+                          <p
+                            className="
+                              text-[9px]
+                              uppercase
+                              tracking-[0.3em]
+                              text-[#2B4E66]/45
+                            "
+                          >
+                            The Court Experience
+                          </p>
+
+                        </div>
+
+                        <p
+                          className="
+                            mt-2
+                            text-[24px]
+                            leading-none
+                            text-[#2B4E66]
+                          "
+                          style={{
+                            fontFamily:
+                              '"Cormorant Garamond", serif',
+                            fontWeight: 400,
+                          }}
+                        >
+                          Choose your experience.
+                        </p>
+
+                      </div>
+
+
+                      {/* SERVICE ITEMS */}
+
+                      <div className="space-y-1">
+
+                        {services.map((service) => (
+                          <Link
+                            key={service.href}
+                            href={service.href}
+                            className="
+                              group/service
+                              flex
+                              items-center
+                              gap-4
+                              rounded-[18px]
+                              px-4
+                              py-3.5
+                              transition-all
+                              duration-300
+                              hover:bg-[#2B4E66]
+                            "
+                          >
+
+                            {/* NUMBER */}
+
+                            
+
+
+                            {/* CONTENT */}
+
+                            <div className="flex-1">
+
+                              <p
+                                className="
+                                  text-[16px]
+                                  text-[#2B4E66]
+                                  transition-colors
+                                  duration-300
+                                  group-hover/service:text-white
+                                "
+                                style={{
+                                  fontFamily:
+                                    'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
+                                }}
+                              >
+                                {service.name}
+                              </p>
+
+                             
+
+                            </div>
+
+
+                            {/* ARROW */}
+
+                            <span
+                              className="
+                                text-sm
+                                text-[#2B4E66]/30
+                                transition-all
+                                duration-300
+                                group-hover/service:translate-x-1
+                                group-hover/service:text-white
+                              "
+                            >
+                              →
+                            </span>
+
+                          </Link>
+                        ))}
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
               </nav>
 
-              {/* CONTACT BUTTON */}
+
+              {/* =========================
+                  CONTACT BUTTON
+              ========================= */}
 
               <motion.div
                 whileHover={{
@@ -318,41 +635,61 @@ export default function Navbar() {
                     items-center
                     justify-center
                     h-[44px]
-                    px-4
+                    px-5
                     rounded-full
-                    bg-[#2B4E66]
-                    text-white
+                    bg-white
+                    text-[#2B4E66]
                     text-[12px]
                     font-semibold
                     overflow-hidden
-                    shadow-[0_10px_30px_rgba(43,78,102,0.28)]
+                    shadow-[0_10px_30px_rgba(43,78,102,0.20)]
+                    transition-all
+                    duration-300
+                    hover:bg-[#172F40]
+                    hover:text-white
                   "
                   style={{
                     fontFamily:
                       'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
                   }}
                 >
-               
-
-                  <span className="relative z-10">Contact Us</span>
+                  <span className="relative z-10">
+                    Contact Us
+                  </span>
                 </Link>
               </motion.div>
+
             </div>
+
           </div>
+
         </div>
       </motion.header>
 
-      {/* MOBILE MENU */}
+
+      {/* =====================================================
+          MOBILE MENU
+      ===================================================== */}
 
       <AnimatePresence>
+
         {mobileMenu && (
           <>
-            {/* BACKDROP */}
+
+            {/* =========================
+                BACKDROP
+            ========================= */}
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              exit={{
+                opacity: 0,
+              }}
               onClick={() => setMobileMenu(false)}
               className="
                 fixed
@@ -364,7 +701,10 @@ export default function Navbar() {
               "
             />
 
-            {/* MENU */}
+
+            {/* =========================
+                MOBILE MENU
+            ========================= */}
 
             <motion.div
               initial={{
@@ -403,6 +743,9 @@ export default function Navbar() {
                 overflow-hidden
               "
             >
+
+              {/* SOFT BACKGROUND */}
+
               <div
                 className="
                   absolute
@@ -414,6 +757,9 @@ export default function Navbar() {
                 "
               />
 
+
+              {/* MENU CONTENT */}
+
               <div
                 className="
                   relative
@@ -421,12 +767,19 @@ export default function Navbar() {
                   flex
                   flex-col
                   justify-between
+                  overflow-y-auto
                   p-7
                 "
               >
-                {/* LINKS */}
+
+                {/* =========================
+                    LINKS
+                ========================= */}
 
                 <div className="flex flex-col gap-3 mt-6">
+
+                  {/* NORMAL LINKS */}
+
                   {navLinks.map((item, index) => (
                     <motion.div
                       key={item.href}
@@ -441,7 +794,9 @@ export default function Navbar() {
                       transition={{
                         delay: index * 0.06,
                       }}
-                      whileTap={{ scale: 0.98 }}
+                      whileTap={{
+                        scale: 0.98,
+                      }}
                     >
                       <Link
                         href={item.href}
@@ -452,40 +807,199 @@ export default function Navbar() {
                           items-center
                           justify-between
                           px-6
-                          py-5
+                          py-4
                           rounded-[22px]
                           bg-white/60
                           border
                           border-white/40
                           text-[#2B4E66]
-                          text-[20px]
+                          text-[19px]
                           font-medium
+                          transition-all
+                          duration-300
+                          hover:bg-[#2B4E66]
+                          hover:text-white
                         "
                         style={{
                           fontFamily:
                             'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
                         }}
                       >
-                        <span>{item.name}</span>
+
+                        <span>
+                          {item.name}
+                        </span>
 
                         <span
                           className="
                             text-[22px]
                             opacity-40
+                            group-hover:opacity-100
                             group-hover:translate-x-1
-                            transition-transform
+                            transition-all
                           "
                         >
                           →
                         </span>
+
                       </Link>
                     </motion.div>
                   ))}
+
+
+                  {/* =================================================
+                      MOBILE SERVICES
+                  ================================================= */}
+
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      y: 10,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    transition={{
+                      delay: 0.25,
+                    }}
+                    className="
+                      rounded-[22px]
+                      border
+                      border-white/40
+                      bg-white/60
+                      p-5
+                    "
+                  >
+
+                    {/* SERVICES TITLE */}
+
+                    <div className="mb-4 px-1">
+
+                      <div className="flex items-center gap-3">
+
+                        <span className="h-px w-7 bg-[#2B4E66]/25" />
+
+                        <p
+                          className="
+                            text-[9px]
+                            uppercase
+                            tracking-[0.3em]
+                            text-[#2B4E66]/45
+                          "
+                        >
+                          Services
+                        </p>
+
+                      </div>
+
+                    </div>
+
+
+                    {/* SERVICE ITEMS */}
+
+                    <div className="space-y-1">
+
+                      {services.map((service, index) => (
+                        <motion.div
+                          key={service.href}
+                          initial={{
+                            opacity: 0,
+                            x: -10,
+                          }}
+                          animate={{
+                            opacity: 1,
+                            x: 0,
+                          }}
+                          transition={{
+                            delay:
+                              0.3 + index * 0.07,
+                          }}
+                        >
+
+                          <Link
+                            href={service.href}
+                            onClick={() =>
+                              setMobileMenu(false)
+                            }
+                            className="
+                              group
+                              flex
+                              items-center
+                              gap-4
+                              rounded-[17px]
+                              px-3
+                              py-3
+                              transition-all
+                              duration-300
+                              hover:bg-[#2B4E66]
+                            "
+                          >
+
+                            {/* NUMBER */}
+
+                           
+
+
+                            {/* TEXT */}
+
+                            <div className="flex-1">
+
+                              <p
+                                className="
+                                  text-[17px]
+                                  text-[#2B4E66]
+                                  transition-colors
+                                  group-hover:text-white
+                                "
+                                style={{
+                                  fontFamily:
+                                    'New York, ui-serif, Georgia, Cambria, "Times New Roman", serif',
+                                }}
+                              >
+                                {service.name}
+                              </p>
+
+                             
+
+                            </div>
+
+
+                            {/* ARROW */}
+
+                            <span
+                              className="
+                                text-[#2B4E66]/30
+                                transition-all
+                                group-hover:translate-x-1
+                                group-hover:text-white
+                              "
+                            >
+                              →
+                            </span>
+
+                          </Link>
+
+                        </motion.div>
+                      ))}
+
+                    </div>
+
+                  </motion.div>
+
                 </div>
 
-                {/* CONTACT BUTTON */}
 
-                <motion.div whileTap={{ scale: 0.98 }}>
+                {/* =========================
+                    CONTACT BUTTON
+                ========================= */}
+
+                <motion.div
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                  className="mt-6"
+                >
                   <Link
                     href="/contact"
                     onClick={() => setMobileMenu(false)}
@@ -501,6 +1015,9 @@ export default function Navbar() {
                       flex
                       items-center
                       justify-center
+                      transition-all
+                      duration-300
+                      hover:bg-[#172F40]
                     "
                     style={{
                       fontFamily:
@@ -510,10 +1027,14 @@ export default function Navbar() {
                     Contact Us
                   </Link>
                 </motion.div>
+
               </div>
+
             </motion.div>
+
           </>
         )}
+
       </AnimatePresence>
     </>
   );

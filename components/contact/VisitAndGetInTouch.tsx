@@ -54,9 +54,9 @@ const contactItems: ContactItem[] = [
 },
   {
     label: "Contact Us",
-    value: "+91 9217057386",
+    value: "+91 9311821282",
     action: "Call now",
-    href: "tel:+919217057386",
+    href: "tel:+91 9311821282",
     icon: "phone",
     external: false,
   },
